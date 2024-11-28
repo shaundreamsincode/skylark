@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  ADMIN_EMAILS = ["romacubecdmx@gmail.com shaun@romacube.com julio@romacube.com mikey@romacube.com"].freeze
+  ADMIN_EMAILS = %w(romacubecdmx@gmail.com shaun@romacube.com julio@romacube.com mikey@romacube.com).freeze
 
   has_secure_password
   has_many :page_views
