@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def logged_in?
-    session[:user_id]
+    session[:user_id].present?
   end
 
   def require_login
