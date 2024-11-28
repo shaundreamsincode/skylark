@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Roma Cube</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Roma Cube</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+<body>
+<!-- Main Content -->
+<main class="container mx-auto mt-28 px-5 flex">
+  <div class="container mx-auto max-w-2xl">
+    <!-- Flash Messages -->
+    <div class="container mx-auto px-4">
+      <% flash.each do |key, message| %>
+        <div
+          class="mt-4 p-4 rounded-lg shadow-lg
+                 <%= key == 'notice' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= yield %>
+  </div>
+</main>
+</body>
 </html>

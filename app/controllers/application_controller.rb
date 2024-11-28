@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
   before_action :require_login
 
+  protected
+
   def logged_in?
     session[:user_id]
   end

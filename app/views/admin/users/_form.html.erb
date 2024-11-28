@@ -1,0 +1,36 @@
+<%= form_with model: @user, url: @user.persisted? ? admin_user_path(@user) : admin_users_path, local: true, class: "space-y-4" do |f| %>
+  <!-- First Name -->
+  <div>
+    <%= f.label :first_name, "First Name", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :first_name, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+  <!-- Last Name -->
+  <div>
+    <%= f.label :last_name, "Last Name", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :last_name, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+  <!-- Email -->
+  <div>
+    <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+  <!-- Password -->
+  <div>
+    <%= f.label :password, "Password", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.password_field :password, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+  <!-- Password Confirmation -->
+  <div>
+    <%= f.label :password_confirmation, "Confirm Password", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.password_field :password_confirmation, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
+
+  <!-- Submit Button -->
+  <div>
+    <%= f.submit (f.object.persisted? ? "Update User" : "Create User"), class: "w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition" %>
+  </div>
+<% end %>

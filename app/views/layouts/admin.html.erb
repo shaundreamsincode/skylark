@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto px-4 py-8 max-w-screen-lg">
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-800">Admin Panel</h1>
+    <nav class="mt-4">
+      <%= link_to "Home", admin_root_path, class: "text-blue-500 hover:underline mr-4" %>
+      <%= link_to "Users", admin_users_path, class: "text-blue-500 hover:underline" %>
+    </nav>
+  </header>
+
+  <main>
+    <%= yield %>
+  </main>
+</div>
+</body>
+</html>
