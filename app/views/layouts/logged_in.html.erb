@@ -10,22 +10,21 @@
 
 <body>
 <!-- Navbar -->
-<!--<div class="container mx-auto px-4 py-8 max-w-screen-lg">-->
 
 <!-- Main Content -->
 <main class="container mx-auto px-4 py-8 max-w-screen-lg">
-  <nav class="flex justify-between items-center">
+  <nav class="flex justify-between items-center mb-6">
     <div class="text-lg font-bold">The Cube</div>
     <div class="flex space-x-4">
-      <%= button_to "Home", dashboard_path, method: :get, class: "text-blue-500 hover:underline mr-4" %>
-      <%= button_to "About", about_path, method: :get, class: "text-blue-500 hover:underline mr-4" %>
-      <%= button_to "Investment Opportunities", investment_opportunities_path, method: :get, class: "text-blue-500 hover:underline mr-4" %>
-
-      <% if current_user.is_admin? %>
-        <%= button_to "Admin Panel", "/admin", method: :get, class: "text-blue-500 hover:underline mr-4" %>
-    <% end %>
-
-      <%= button_to "Logout", "/logout", method: :delete, class: "text-blue-500 hover:underline mr-4" %>
+      <nav class="flex space-x-4">
+        <%= link_to "Home", dashboard_path, class: "text-blue-500 hover:underline mr-4" %>
+        <%= link_to "About", about_path, class: "text-blue-500 hover:underline mr-4" %>
+        <%= link_to "Investment Opportunities", investment_opportunities_path, class: "text-blue-500 hover:underline mr-4" %>
+        <% if current_user.is_admin? %>
+          <%= link_to "Admin Panel", "/admin", class: "text-blue-500 hover:underline mr-4" %>
+        <% end %>
+        <%= button_to "Logout", "/logout", method: :delete, class: "text-blue-500 hover:underline bg-transparent border-none cursor-pointer" %>
+      </nav>
     </div>
   </nav>
 
