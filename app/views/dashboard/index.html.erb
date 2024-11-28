@@ -1,4 +1,22 @@
-<p>Dashboard (this is the page you would see if you were logged in...)</p>
+<!--<p>Dashboard (this is the page you would see if you were logged in...)</p>-->
 <%#=link_to 'Log Out', sessions_path, method: :delete%>
 
-<%= button_to 'Log Out', sessions_path, method: :delete %>
+<%#= button_to 'Log Out', sessions_path, method: :delete %>
+
+<div class="h-56 grid grid-cols-1 gap-4 space-evenly">
+  <div class="flex justify-between items-center">
+    <div>
+      <h1 class="text-5xl font-extrabold text-gray-800 mb-4">Welcome Home</h1>
+    </div>
+
+    <div>
+      <%= button_to "Logout", sessions_path, method: :delete, class: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" %>
+    </div>
+  </div>
+
+  <div>
+    <%= image_tag "roma_cube_2.png",
+                  alt: "The Cube",
+                  class: "rounded-lg shadow-lg mx-auto max-w-full" %>
+  </div>
+</div>
