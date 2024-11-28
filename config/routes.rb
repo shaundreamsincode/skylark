@@ -24,8 +24,18 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "home#index"
 
-    resources :users
-    resources :page_views, only: [:index]
+    resources :users do
+      member do
+        get :export_page_views_csv
+      end
+    end
+
+    resources :page_views, only: [:index] do
+      collection do
+        get :export_csv
+      end
+    end
+
     resources :inquiries, only: [:index, :show, :destroy]
   end
 end

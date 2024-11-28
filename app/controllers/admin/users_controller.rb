@@ -1,3 +1,5 @@
+require 'csv'
+
 class Admin::UsersController < Admin::BaseController
   def index
     @users = User.all
@@ -5,7 +7,7 @@ class Admin::UsersController < Admin::BaseController
 
   def show
     @user = User.find(params[:id])
-    @page_views = @user.page_views.order(created_at: :desc)
+    @page_views = @user.page_views.page(params[:page]).order(created_at: :desc)
   end
 
   def new
@@ -39,6 +41,31 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
+  end
+
+  def export_page_views_csv
+    @user = User.find(params[:id])
+    @page_views = @user.page_views.order(created_at: :desc)
+
+    csv_data = CSV.generate(headers: true) do |csv|
+      # Define CSV headers
+      csv << ["Page", "IP Address", "Date"]
+
+      # Add rows for each PageView record
+      @page_views.each do |page_view|
+        csv << [
+          page_view.display_name,
+          page_view.ip_address,
+          page_view.created_at.strftime("%Y-%m-%d %H:%M:%S")
+        ]
+      end
+    end
+
+    # Send the CSV file to the user
+    respond_to do |format|
+      format.csv { send_data csv_data, filename: "user_#{params[:id]}_page_views_#{Time.now.to_i}.csv" }
+      format.html { redirect_to admin_user_path(@user), alert: "Invalid request format." }
+    end
   end
 
   private

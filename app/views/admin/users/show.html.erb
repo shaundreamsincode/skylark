@@ -21,7 +21,7 @@
         <tbody>
         <% @page_views.each do |view| %>
           <tr class="text-gray-700">
-            <td class="border border-gray-300 px-4 py-2"><%= view.page_name %></td>
+            <td class="border border-gray-300 px-4 py-2"><%= view.display_name %></td>
             <td class="border border-gray-300 px-4 py-2"><%= view.ip_address %></td>
             <td class="border border-gray-300 px-4 py-2"><%= view.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
           </tr>
@@ -29,7 +29,13 @@
         </tbody>
       </table>
     </div>
-  <% else %>
+    <div class="mt-6">
+      <%= link_to "Export Page Views CSV", export_page_views_csv_admin_user_path(@user, format: :csv),
+                  class: "bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition" %>
+    </div>
+<% else %>
     <p class="text-gray-600">No page views recorded for this user.</p>
   <% end %>
 </div>
+
+<%= will_paginate @page_views %>
