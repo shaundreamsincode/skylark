@@ -21,7 +21,7 @@
           <td class="border border-gray-300 px-4 py-2"><%= inquiry.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td class="border border-gray-300 px-4 py-2 text-center">
             <%= link_to "View", admin_inquiry_path(inquiry), class: "text-blue-500 hover:underline mr-4" %>
-            <%= link_to "Delete", admin_inquiry_path(inquiry), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %>
+            <%#= link_to "Delete", admin_inquiry_path(inquiry), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %>
           </td>
         </tr>
       <% end %>
