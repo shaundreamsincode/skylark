@@ -11,3 +11,15 @@
 }
 
 */
+
+/*.body {*/
+/*    font-family: "Akshar", sans-serif;*/
+/*    font-optical-sizing: auto;*/
+/*    !*font-weight: <weight>;*!*/
+/*    font-style: normal;*/
+/*}*/
+
+body {
+    font-family: 'Akshar', sans-serif;
+    color: #403B55;
+}
