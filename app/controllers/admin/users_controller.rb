@@ -14,9 +14,11 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.valid?
+      @user.save!
       redirect_to admin_users_path, notice: "User created successfully."
     else
+      flash[:alert] = "There was an error creating the user. Please check the form for issues."
       render :new, status: :unprocessable_entity
     end
   end
