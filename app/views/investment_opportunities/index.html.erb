@@ -1,3 +1,89 @@
+<!--<div class="h-auto grid grid-cols-1 gap-8">-->
+  <!-- Heading -->
+<!--  <div class="flex justify-center items-center">-->
+<!--    <h1 class="text-5xl font-extrabold text-gray-800 mb-4">Investment Opportunities</h1>-->
+<!--  </div>-->
+
+  <!-- Content Section -->
+<!--  <div class="grid grid-cols-2 gap-8">-->
+<!--    <div class="flex flex-col justify-center">-->
+      <%#= image_tag "roma_cube_3.png", alt: "The Cube", class: "rounded-lg shadow-lg mr-4" %>
+<!--      <div>-->
+<!--        <b class="text-xl font-semibold mb-2">-->
+<!--          Where visionaries invest, culture thrives, and innovation lives.-->
+<!--        </b>-->
+<!--        <p class="text-lg mb-4"><i> </i></p>-->
+<!--        <p class="text-gray-600 leading-relaxed mb-4">-->
+<!--          Invest and seize the opportunity to be part of a landmark development in one of Mexico City’s most-->
+<!--          desirable districts. Discover The Cube—an architectural icon in the vibrant heart of Roma Norte.-->
+<!--          This eight-story masterpiece redefines modern luxury and functionality, offering an-->
+<!--          unparalleled blend of cultural innovation, business sophistication, and urban living.-->
+<!--        </p>-->
+<!--        <p class="text-gray-600 leading-relaxed">-->
+<!--          Roma Norte thrives as a hub of culture and growth, making it a much sought-after destination-->
+<!--          for real estate investment. More than a building, The Cube is a bold architectural statement-->
+<!--          and a dynamic lifestyle destination poised to draw elite businesses, visionary creatives,-->
+<!--          and innovative entrepreneurs.-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="grid grid-cols-2 gap-8 mt-28">-->
+<!--    <div class="flex flex-col justify-center">-->
+<!--      <div class="mr-4">-->
+<!--        <b class="text-xl font-semibold mb-2">-->
+<!--          Reasons to Invest-->
+<!--        </b>-->
+<!--        <p class="text-lg mb-4"><i> </i></p>-->
+<!--        <p class="text-gray-600 leading-relaxed">-->
+<!--          <div class="mb-4">-->
+<!--            <b>• Prime Location</b>: Nestled in Roma Norte—-->
+<!--            Mexico City’s beating heart of culture,-->
+<!--            cuisine, and creativity—The Cube stands-->
+<!--            at the iconic corner of Colima and Orizaba, surrounded by top-tier properties in-->
+<!--            one of the city’s most vibrant and visited-->
+<!--            neighborhoods.-->
+<!--          </div>-->
+
+<!--          <div class="mb-4">-->
+<!--            <b>• Sky-High Demand: </b> Businesses and creatives are clamoring for sleek, flexible-->
+<!--            spaces in Roma Norte. The Cube delivers-->
+<!--            with a cutting-edge design, offering the-->
+<!--            modernity and functionality the 21st century demands.-->
+<!--          </div>-->
+
+<!--          <div class="mb-4">-->
+<!--            <b>• Architectural Brilliance: </b>-->
+<!--            With its bold-->
+<!--            off-center design, The Cube isn’t just a-->
+<!--            building—it’s a future landmark, blending-->
+<!--            innovation and prestige while adding to-->
+<!--            the district’s rich architectural tapestry.-->
+<!--          </div>-->
+
+<!--          <div class="mb-4">-->
+<!--            <b>• Diverse Income Potential: </b>-->
+<!--            From its multi-level gallery and high-end retail to-->
+<!--            award-winning dining, a rooftop wine bar,-->
+<!--            state-of-the-art offices, incubators, a private club, and luxury living spaces, The-->
+<!--            Cube is a powerhouse of revenue-generating opportunities.-->
+<!--          </div>-->
+
+<!--          <div class="mb-4">-->
+<!--            <b>• Smart Investment: </b>-->
+<!--            Offering ROI in as little as 15 years, The Cube combines-->
+<!--            security, profitability, and the allure of one of-->
+<!--            the most desirable real estate markets in the largest Spanish-speaking city on-->
+<!--            the planet.-->
+<!--          </div>-->
+<!--        </p>-->
+<!--      </div>-->
+      <%#= image_tag "roma_cube_4.png", alt: "The Cube", class: "rounded-lg shadow-lg" %>
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
 <div class="h-auto grid grid-cols-1 gap-8">
   <!-- Heading -->
   <div class="flex justify-center items-center">
@@ -5,9 +91,13 @@
   </div>
 
   <!-- Content Section -->
-  <div class="grid grid-cols-2 gap-8">
-    <div class="flex flex-col justify-center">
-      <%= image_tag "roma_cube_3.png", alt: "The Cube", class: "rounded-lg shadow-lg mr-4" %>
+  <div class="grid grid-cols-1 gap-12">
+    <div class="flex items-start gap-8">
+      <!-- Image -->
+      <%= image_tag "roma_cube_3.png",
+                    alt: "The Cube",
+                    class: "rounded-lg shadow-lg w-3/4 max-w-2xl" %>
+
       <div>
         <b class="text-xl font-semibold mb-2">
           Where visionaries invest, culture thrives, and innovation lives.
@@ -29,8 +119,8 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-2 gap-8 mt-28">
-    <div class="flex flex-col justify-center">
+  <div class="grid grid-cols-1 gap-12 mt-28">
+    <div class="flex items-start gap-8">
       <div class="mr-4">
         <b class="text-xl font-semibold mb-2">
           Reasons to Invest
@@ -79,7 +169,10 @@
           </div>
         </p>
       </div>
-      <%= image_tag "roma_cube_4.png", alt: "The Cube", class: "rounded-lg shadow-lg" %>
+
+      <%= image_tag "roma_cube_4.png",
+                    alt: "The Cube",
+                    class: "rounded-lg shadow-lg w-3/4 max-w-2xl" %>
     </div>
   </div>
 </div>
