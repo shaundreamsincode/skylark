@@ -5,11 +5,17 @@
   </div>
 
   <!-- Content Section -->
-  <div class="grid grid-cols-2 gap-8">
-    <div class="flex flex-col justify-center">
-      <%= image_tag "roma_cube_2.png", alt: "The Cube", class: "rounded-lg shadow-lg mr-4" %>
+  <div class="grid grid-cols-1 gap-12">
+    <div class="flex items-start gap-8">
+      <!-- Image -->
+      <%= image_tag "roma_cube_2.png",
+                    alt: "The Cube",
+                    class: "rounded-lg shadow-lg w-3/4 max-w-2xl" %>
+
+      <!-- Text -->
       <div>
-        <b class="text-xl font-semibold mb-2">
+<!--      <div class="w-3/4 max-w-2xl">-->
+        <b class="text-xl font-semibold mb-2 block">
           Roma Norte, Mexico City
         </b>
         <p class="text-lg mb-4"><i>Where Culture, Creativity, and Business Converge</i></p>
