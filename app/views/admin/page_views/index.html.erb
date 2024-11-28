@@ -14,7 +14,7 @@
       <tbody>
       <% @page_views.each do |page_view| %>
         <tr class="text-gray-700">
-          <td class="border border-gray-300 px-4 py-2"><%= page_view.page_name %></td>
+          <td class="border border-gray-300 px-4 py-2"><%= page_view.display_name %></td>
           <td class="border border-gray-300 px-4 py-2"><%= page_view.user ? page_view.user.email : "Guest" %></td>
           <td class="border border-gray-300 px-4 py-2"><%= page_view.ip_address %></td>
           <td class="border border-gray-300 px-4 py-2"><%= page_view.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>

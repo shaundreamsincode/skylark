@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def track_page_view
-    unless current_user.present? && current_user.is_admin?
+    unless logged_in? && current_user.is_admin?
       PageView.create(
         user_id: current_user&.id, # This will be nil for non-logged-in users
         page_name: "#{controller_name}##{action_name}",
