@@ -41,3 +41,6 @@ yarn-debug.log*
 
 # Local development stuff
 .idea/
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
