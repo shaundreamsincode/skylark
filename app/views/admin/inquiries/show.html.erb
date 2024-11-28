@@ -1,0 +1,7 @@
+<div class="container mx-auto px-4 py-8 max-w-md">
+  <h1 class="text-2xl font-bold mb-6 text-gray-800">Inquiry Details</h1>
+  <p><strong>Name:</strong> <%= @inquiry.name %></p>
+  <p><strong>Email:</strong> <%= mail_to @inquiry.email %></p>
+  <p><strong>Subject:</strong> <%= @inquiry.subject %></p>
+  <p><strong>Message:</strong> <%= simple_format(@inquiry.body) %></p>
+</div>

@@ -9,6 +9,7 @@
         <th class="border border-gray-300 px-4 py-2 text-left">First Name</th>
         <th class="border border-gray-300 px-4 py-2 text-left">Last Name</th>
         <th class="border border-gray-300 px-4 py-2 text-left">Email</th>
+        <th class="border border-gray-300 px-4 py-2 text-left">Is Admin?</th>
         <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
       </tr>
       </thead>
@@ -23,6 +24,9 @@
           </td>
           <td class="border border-gray-300 px-4 py-2">
             <%= user.email %>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">
+            <%= user.is_admin? %>
           </td>
           <td class="border border-gray-300 px-4 py-2 text-center">
             <%= link_to "View", admin_user_path(user), class: "bg-blue-500 text-white font-semibold py-1 px-3 rounded hover:bg-blue-600 transition" %>

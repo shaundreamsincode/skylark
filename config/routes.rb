@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   # Dashboard route
   get "/dashboard", to: "dashboard#index"
 
+  resources :inquiries, only: [:new, :create]
+
   # Admin namespace
   namespace :admin do
     root to: "home#index"
 
     resources :users
+    resources :page_views, only: [:index]
+    resources :inquiries, only: [:index, :show, :destroy]
   end
 end

@@ -1,0 +1,31 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6 text-gray-800">Inquiries</h1>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full border-collapse border border-gray-300 bg-white shadow-lg">
+      <thead class="bg-gray-200 text-gray-600 uppercase text-sm">
+      <tr>
+        <th class="border border-gray-300 px-4 py-2 text-left">Name</th>
+        <th class="border border-gray-300 px-4 py-2 text-left">Email</th>
+        <th class="border border-gray-300 px-4 py-2 text-left">Subject</th>
+        <th class="border border-gray-300 px-4 py-2 text-left">Date</th>
+        <th class="border border-gray-300 px-4 py-2 text-center">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @inquiries.each do |inquiry| %>
+        <tr class="text-gray-700">
+          <td class="border border-gray-300 px-4 py-2"><%= inquiry.name %></td>
+          <td class="border border-gray-300 px-4 py-2"><%= mail_to inquiry.email %></td>
+          <td class="border border-gray-300 px-4 py-2"><%= inquiry.subject %></td>
+          <td class="border border-gray-300 px-4 py-2"><%= inquiry.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td class="border border-gray-300 px-4 py-2 text-center">
+            <%= link_to "View", admin_inquiry_path(inquiry), class: "text-blue-500 hover:underline mr-4" %>
+            <%= link_to "Delete", admin_inquiry_path(inquiry), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

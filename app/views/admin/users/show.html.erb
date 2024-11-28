@@ -7,4 +7,29 @@
   <div class="mt-6">
     <%= link_to "Edit User", edit_admin_user_path(@user), class: "bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition" %>
   </div>
+
+  <% if @page_views.any? %>
+    <div class="overflow-x-auto mt-6">
+      <table class="min-w-full border-collapse border border-gray-300 bg-white shadow-lg">
+        <thead class="bg-gray-200 text-gray-600 uppercase text-sm">
+        <tr>
+          <th class="border border-gray-300 px-4 py-2 text-left">Page</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">IP Address</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @page_views.each do |view| %>
+          <tr class="text-gray-700">
+            <td class="border border-gray-300 px-4 py-2"><%= view.page_name %></td>
+            <td class="border border-gray-300 px-4 py-2"><%= view.ip_address %></td>
+            <td class="border border-gray-300 px-4 py-2"><%= view.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-gray-600">No page views recorded for this user.</p>
+  <% end %>
 </div>

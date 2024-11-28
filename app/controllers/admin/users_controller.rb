@@ -5,6 +5,7 @@ class Admin::UsersController < Admin::BaseController
 
   def show
     @user = User.find(params[:id])
+    @page_views = @user.page_views.order(created_at: :desc)
   end
 
   def new

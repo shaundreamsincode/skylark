@@ -6,7 +6,7 @@ class Admin::BaseController < ApplicationController
   protected
 
   def require_user_has_admin_privileges
-    unless User::ADMIN_EMAILS.include?(current_user.email)
+    unless current_user.is_admin?
       redirect_to "/dashboard"
     end
   end
