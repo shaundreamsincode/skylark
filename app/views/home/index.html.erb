@@ -1,12 +1,15 @@
 <div class="min-h-screen bg-gray-100 flex flex-col justify-center items-center px-4">
   <!-- Content Wrapper -->
-  <div class="text-center max-w-md w-full">
-    <!-- Heading -->
-    <h1 class="text-5xl font-extrabold text-gray-800 mb-4">The Cube</h1>
-    <p class="text-xl text-gray-600 mb-6">Roma Norte, CDMX</p>
 
-    <!-- Centered Image -->
-    <div class="mb-6">
+  <div class="h-56 grid grid-cols-1 gap-4 content-start">
+    <div>
+      <h1 class="text-5xl font-extrabold text-gray-800 mb-4">The Cube</h1>
+    </div>
+    <div>
+      <p class="text-xl text-blue-600 mb-6">Roma Norte, CDMX</p>
+    </div>
+
+    <div>
       <img
         src="https://i.ibb.co/3R7Ldpc/Screenshot-2024-11-27-at-9-52-12-PM.png"
         alt="The Cube Preview"
@@ -14,14 +17,12 @@
       >
     </div>
 
-    <%= link_to "Login", "/login" %>
-
-    <!-- Call to Action Button -->
-<!--    <a-->
-<!--      href="#"-->
-<!--      class="bg-blue-500 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-600 transition-all text-lg"-->
-<!--    >-->
-<!--      Request Access-->
-<!--    </a>-->
+    <div>
+      <%= link_to "Login", "/login" %>
+    </div>
   </div>
 </div>
+
+<button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+  My Button
+</button>
