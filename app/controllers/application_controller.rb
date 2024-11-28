@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  layout :determine_layout
+
   before_action :require_login
   before_action :track_page_view
 
@@ -27,5 +29,11 @@ class ApplicationController < ActionController::Base
         user_agent: request.user_agent
       )
     end
+  end
+
+  private
+
+  def determine_layout
+    current_user ? "logged_in" : "application"
   end
 end

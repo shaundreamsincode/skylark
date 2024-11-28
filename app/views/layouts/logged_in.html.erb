@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roma Cube</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+</head>
+
+<body>
+<!-- Navbar -->
+<!--<div class="container mx-auto px-4 py-8 max-w-screen-lg">-->
+
+<!-- Main Content -->
+<main class="container mx-auto px-4 py-8 max-w-screen-lg">
+  <nav class="flex justify-between items-center">
+    <div class="text-lg font-bold">The Cube</div>
+    <div class="flex space-x-4">
+      <%= button_to "Home", dashboard_path, method: :get, class: "text-blue-500 hover:underline mr-4" %>
+      <%= button_to "About", about_path, method: :get, class: "text-blue-500 hover:underline mr-4" %>
+      <%= button_to "Investment Opportunities", investment_opportunities_path, method: :get, class: "text-blue-500 hover:underline mr-4" %>
+
+      <% if current_user.is_admin? %>
+        <%= button_to "Admin Panel", "/admin", method: :get, class: "text-blue-500 hover:underline mr-4" %>
+    <% end %>
+
+      <%= button_to "Logout", "/logout", method: :delete, class: "text-blue-500 hover:underline mr-4" %>
+    </div>
+  </nav>
+
+  <div class="mt-8">
+    <%= yield %>
+  </div>
+</main>
+</body>
+</html>

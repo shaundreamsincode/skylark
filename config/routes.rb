@@ -4,13 +4,22 @@ Rails.application.routes.draw do
   # Authentication routes
   get '/login', to: 'sessions#new', as: 'login'
   post '/sessions', to: 'sessions#create', as: 'sessions'
-  delete '/sessions', to: 'sessions#destroy'
+
+  delete "/logout", to: "sessions#destroy", as: "logout"
+
+  # delete '/sessions', to: 'sessions#destroy'
+  # post "/logout", to: "sessions#destroy", as: "logout"
 
   # Dashboard route
   get "/dashboard", to: "dashboard#index"
 
   resources :inquiries, only: [:new, :create]
 
+  ## PAGES
+  get "about", to: "about#index"
+  get "investment_opportunities", to: "investment_opportunities#index"
+
+  resources :investment_opportunities, only: [:index]
   # Admin namespace
   namespace :admin do
     root to: "home#index"
