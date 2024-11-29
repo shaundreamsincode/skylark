@@ -2,11 +2,11 @@ require 'csv'
 
 class Admin::PageViewsController < Admin::BaseController
   def index
-    @page_views = PageView.page(params[:page])
+    @page_views = PageView.order("created_at desc").page(params[:page])
   end
 
   def export_csv
-    @page_views = PageView.all
+    @page_views = PageView.order("created_at desc")
 
     csv_data = CSV.generate(headers: true) do |csv|
       # Define CSV headers
