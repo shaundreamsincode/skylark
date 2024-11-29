@@ -8,6 +8,7 @@
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -21,6 +22,7 @@
       <nav class="flex space-x-4">
         <%= link_to "About", about_path, class: "hover:underline" %>
         <%= link_to "Investing", investment_opportunities_path, class: "hover:underline" %>
+        <%= link_to "Contact Us", contact_us_path, class: "hover:underline" %>
         <%= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %>
       </nav>
     </div>
