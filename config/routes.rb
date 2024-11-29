@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   ## PAGES
   get "about", to: "about#index"
   get "investment_opportunities", to: "investment_opportunities#index"
+  get "contact_us", to: "contact_us#index"
 
-  resources :investment_opportunities, only: [:index]
   # Admin namespace
   namespace :admin do
     root to: "home#index"

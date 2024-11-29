@@ -14,15 +14,13 @@
 <!-- Main Content -->
 <main class="container mx-auto px-4 py-4 md:py-8 max-w-screen-lg">
   <nav class="flex justify-between items-center mb-4 md:mb-6">
-    <div class="text-lg font-bold">The Cube</div>
+    <h1>
+      <%= link_to "The Cube", dashboard_path, class: "text-3xl font-extrabold hover:underline" %>
+    </h1>
     <div class="flex space-x-4">
       <nav class="flex space-x-4">
-        <%= link_to "Home", dashboard_path, class: "hover:underline mr-4" %>
-        <%= link_to "About", about_path, class: "hover:underline mr-4" %>
-        <%= link_to "Investing", investment_opportunities_path, class: "hover:underline mr-4" %>
-        <%# if current_user.is_admin? %>
-        <%#= link_to "Admin Panel", "/admin", class: "text-blue-500 hover:underline mr-4" %>
-        <%# end %>
+        <%= link_to "About", about_path, class: "hover:underline" %>
+        <%= link_to "Investing", investment_opportunities_path, class: "hover:underline" %>
         <%= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %>
       </nav>
     </div>
@@ -30,17 +28,6 @@
 
   <div class="mt-4 md:mt-8">
     <main>
-      <!-- Flash Messages -->
-      <div class="container mx-auto px-4">
-        <% flash.each do |key, message| %>
-          <div
-            class="mt-4 p-4 rounded-lg shadow-lg
-                 <%= key == 'notice' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
-            <%= message %>
-          </div>
-        <% end %>
-      </div>
-
       <%= yield %>
     </main>
   </div>

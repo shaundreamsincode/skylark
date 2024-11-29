@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
 
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id
-      flash[:alert] = {}
 
       redirect_to dashboard_path
     else
