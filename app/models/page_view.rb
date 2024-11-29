@@ -8,9 +8,12 @@ class PageView < ApplicationRecord
     "sessions#new" => "Visits login page",
     "sessions#create" => "Attempts login",
     "sessions#destroy" => "Logs out",
+    "inquiries#new" => "Visits create inquiry page",
+    "inquiries#create" => "Attempts to submits inquiry",
     "dashboard#index" => "Visits dashboard page",
     "about#index" => "Visits about page",
     "investment_opportunities#index" => "Visits investment opportunities page",
+    "contact_us#index" => "Visits contact us page"
   }
 
   def display_name
