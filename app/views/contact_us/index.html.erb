@@ -6,20 +6,23 @@
 
   <!-- Content Section -->
   <div class="grid grid-cols-1 gap-12">
-    <div class="flex flex-col sm:flex-row items-start gap-8">
+    <div class="flex flex-col items-center sm:flex-row sm:items-start gap-8">
       <!-- Image -->
       <%= image_tag "roma_cube_1.png",
                     alt: "The Cube",
-                    class: "rounded-lg shadow-lg w-full sm:w-3/4 max-w-2xl order-1 sm:order-none" %>
+                    class: "rounded-lg shadow-lg w-full sm:w-3/4 max-w-2xl" %>
 
-      <!-- Text -->
-      <div class="order-2 sm:order-none mb-2">
-        <b class="text-xl font-semibold mb-2">
-          To learn more about the project, send us an email at <u>hi@romacube.com</u>.
-        </b>
+      <!-- Text and Social Media Icons -->
+      <div class="flex flex-col items-center sm:items-start gap-8 text-center sm:text-left">
+        <!-- Text -->
+        <div>
+          <b class="text-xl font-semibold mb-2">
+            To learn more about the project, send us an email at <u>hi@romacube.com</u>.
+          </b>
+        </div>
 
         <!-- Social Media Icons -->
-        <div class="grid grid-cols-3 gap-10 justify-center items-center mt-16">
+        <div class="grid grid-cols-3 gap-6 justify-center items-center mt-8">
           <a href="https://www.facebook.com/romacubemx/" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-facebook text-4xl hover:text-blue-600"></i>
           </a>
