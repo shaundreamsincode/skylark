@@ -85,7 +85,7 @@
       <%= link_to "Amenities", amenities_path, class: "hover:underline" %>
       <%= link_to "Investing", investment_opportunities_path, class: "hover:underline" %>
       <%= link_to "Contact", contact_us_path, class: "hover:underline" %>
-
+      <a><%= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %></a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
