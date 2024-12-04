@@ -12,6 +12,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        'font-Industria': ["Industria"],
+        'font-Akshar': ["Akshar"]
       },
     },
   },

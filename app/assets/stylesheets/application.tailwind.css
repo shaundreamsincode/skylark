@@ -32,7 +32,7 @@
 /*}*/
 
 body {
-    font-family: 'Akshar', sans-serif;
+    font-family: DefaultFont, sans-serif;
     color: #403B55;
     /*background-image: url('https://i.ibb.co/8cFSb5h/marketing-website-background.png');*/
     background-image: url('https://i.ibb.co/zrMqz3Z/Screenshot-2024-12-03-at-10-15-51-PM.png');
@@ -46,4 +46,26 @@ body {
     /*color: #403B55;*/
     /*background-image: url('/assets/background.png')*/
     /*background: url(<%= asset_path('background.png') %>);*/
+}
+
+h1 {
+    font-family: Akshar, sans-serif;
+    /*color: white;*/
+
+}
+
+@font-face {
+    font-family: 'DefaultFont';
+    src: url('https://drive.google.com/uc?id=1titWiki9c5MSm7CsSY128SpsLGDYvEZS') format('woff2'),
+    url('https://drive.google.com/uc?id=1pL0bRJ91WvKZwhsMar6v34rCz07JpmxT') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Industria';
+    src: url('https://drive.google.com/uc?id=1w2tPcFrWF9q9blW8OQUbAj0hBqGq9ycf') format('woff2'),
+    url('https://drive.google.com/uc?id=1x5S80h50JMcudORmU1RbRjuiZtZWGL21') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
