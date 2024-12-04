@@ -51,7 +51,16 @@ body {
 h1 {
     font-family: Akshar, sans-serif;
     /*color: white;*/
+}
 
+h2 {
+    font-family: Akshar, sans-serif;
+    /*color: white;*/
+}
+
+h3 {
+    font-family: Akshar, sans-serif;
+    /*color: white;*/
 }
 
 @font-face {

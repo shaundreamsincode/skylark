@@ -1,0 +1,15 @@
+<div class="h-auto container mx-auto px-4">
+  <!-- Heading -->
+  <div class="flex justify-center items-center">
+    <h1 class="text-5xl font-extrabold mb-4">Photo Gallery</h1>
+  </div>
+
+  <!-- Content Section -->
+  <div class="grid grid-cols-2 gap-8">
+    <% (1..7).each do |i| %>
+      <%= image_tag "roma_cube_#{i}.png",
+                    alt: "The Cube",
+                    class: "rounded-lg shadow-lg w-full" %>
+    <% end %>
+  </div>
+</div>
