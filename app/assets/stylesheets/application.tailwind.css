@@ -19,13 +19,30 @@
 /*    font-style: normal;*/
 /*}*/
 
-body {
-    font-family: 'Akshar', sans-serif;
-    color: #403B55;
-}
+/*body {*/
+/*    font-family: 'Akshar', sans-serif;*/
+/*    color: #403B55;*/
+/*    background: url(../images/background.png)*/
+/*}*/
 
 /*.fa.fa-tiktok {*/
 /*    background: url(../images/tiktok_logo.svg) no-repeat;*/
 /*    width: 22px;*/
 /*    height: 25px;*/
 /*}*/
+
+body {
+    font-family: 'Akshar', sans-serif;
+    color: #403B55;
+    background-image: url('https://i.ibb.co/zrMqz3Z/Screenshot-2024-12-03-at-10-15-51-PM.png');
+    /*background-image: url('https://i.ibb.co/Dr2sDs2/background.png');*/
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /*background-position: center;*/
+    /*background-image: url('../../../public/background.png');*/
+    /*background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png');*/
+    /*color: #403B55;*/
+    /*background-image: url('/assets/background.png')*/
+    /*background: url(<%= asset_path('background.png') %>);*/
+}

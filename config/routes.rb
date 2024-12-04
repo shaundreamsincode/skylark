@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   ## PAGES
   get "about", to: "about#index"
+  get "amenities", to: "amenities#index"
   get "investment_opportunities", to: "investment_opportunities#index"
   get "contact_us", to: "contact_us#index"
 

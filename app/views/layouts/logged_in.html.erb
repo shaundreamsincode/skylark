@@ -21,8 +21,12 @@
     <div class="flex space-x-4">
       <nav class="flex space-x-4">
         <%= link_to "About", about_path, class: "hover:underline" %>
+        <%= link_to "Amenities", amenities_path, class: "hover:underline" %>
         <%= link_to "Investing", investment_opportunities_path, class: "hover:underline" %>
         <%= link_to "Contact", contact_us_path, class: "hover:underline" %>
+
+        <%= link_to "Contact", contact_us_path, class: "hover:underline" %>
+        <a class="hover:underline" href="https://drive.google.com/uc?export=download&id=131i4N32XQVcIGWRRkRDJH2AENlkQ6pj_" target="_blank" rel="noopener noreferrer">Press Kit</a>
         <%= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %>
       </nav>
     </div>

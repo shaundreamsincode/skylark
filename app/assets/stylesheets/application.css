@@ -18,3 +18,9 @@
 /*    font-family: 'Akshar', sans-serif;*/
 /*    color: #403B55;*/
 /*}*/
+
+body {
+    font-family: 'Akshar', sans-serif;
+    color: #403B55;
+    /*background: url(../background.png)*/
+}
