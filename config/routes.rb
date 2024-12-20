@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "investment_opportunities", to: "investment_opportunities#index"
   get "contact_us", to: "contact_us#index"
   get "photos", to: "photos#index"
+  get "team", to: "team#index"
 
   # Admin namespace
   namespace :admin do
