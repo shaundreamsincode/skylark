@@ -13,7 +13,7 @@ class PageView < ApplicationRecord
     "dashboard#index" => "Visits dashboard page",
     "about#index" => "Visits about page",
     "investment_opportunities#index" => "Visits investment opportunities page",
-    "contact_us#index" => "Visits contact us page"
+    "contact_us#index" => "Visits contact.html.erb us page"
   }
 
   def display_name

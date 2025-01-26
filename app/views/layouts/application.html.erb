@@ -2,35 +2,140 @@
 <html>
 <head>
   <title>Roma Cube</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+      /*.topnav {*/
+      /*    overflow: hidden;*/
+      /*}*/
+
+      .topnav a {
+          float: left;
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+      }
+
+      .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+      }
+
+      .topnav a.active {
+          color: white;
+      }
+
+      .topnav .icon {
+          display: none;
+      }
+
+      /*@media screen and (max-width: 600px) {*/
+      /*    !* Hide all links except the hamburger menu button *!*/
+      /*    .topnav a {*/
+      /*        display: none; !* Hides all links *!*/
+      /*    }*/
+
+      /*    .topnav a.icon {*/
+      /*        float: right;*/
+      /*        display: block; !* Displays only the hamburger icon *!*/
+      /*    }*/
+      /*}*/
+
+      /*@media screen and (max-width: 600px) {*/
+      /*    .topnav.responsive {*/
+      /*        position: relative;*/
+      /*    }*/
+
+      /*    .topnav.responsive .icon {*/
+      /*        position: absolute;*/
+      /*        right: 0;*/
+      /*        top: 0;*/
+      /*    }*/
+
+      /*    .topnav.responsive a {*/
+      /*        float: none;*/
+      /*        display: block; !* Displays all links in dropdown when responsive class is added *!*/
+      /*        text-align: left;*/
+      /*    }*/
+      /*}*/
+  </style>
 </head>
 
 <body>
 <!-- Main Content -->
-<main class="container mx-auto mt-4 md:mt-8 px-5 flex">
-  <div class="container mx-auto max-w-2xl">
-    <!-- Flash Messages -->
-    <div class="container mx-auto px-4">
-      <% flash.each do |key, message| %>
-        <div
-          class="mt-4 p-4 rounded-lg shadow-lg
-                 <%= key == 'notice' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
-          <%= message %>
-        </div>
-      <% end %>
+<main class="container mx-auto px-4 py-4 min-h-screen">
+  <nav class="flex justify-between items-center mb-4 mb-6">
+    <h3>
+      <%= link_to "Shaun Carland", root_path, class: "font-header-text text-2xl text-1xl font-extrabold hover:underline mr-4" %>
+    </h3>
+    <!--    <h3>-->
+    <%#= link_to image_tag("roma_cube_logo_official.png", alt: "The Cube Logo", class: "h-8 w-auto"), dashboard_path, class: "mr-4" %>
+    <!--    </h3>-->
+
+    <div class="topnav" id="myTopnav">
+      <div class="mr-2">
+        <%= link_to "Resume", resume_path, class: "hover:underline" %>
+        <%= link_to "Contact", contact_path, class: "hover:underline" %>
+        <%#= link_to "Projects", projects_path, class: "hover:underline" %>
+        <%#= link_to "Photos", photos_path, class: "hover:underline" %>
+        <%#= link_to "Contact", contact_path, class: "hover:underline" %>
+
+        <%#= link_to "Home", dashboard_path, class: "hover:underline" %>
+        <%#= link_to "About", about_path, class: "hover:underline" %>
+        <%#= link_to "Photos", photos_path, class: "hover:underline" %>
+        <%#= link_to "Amenities", amenities_path, class: "hover:underline" %>
+        <%#= link_to "Investing", investment_opportunities_path, class: "hover:underline" %>
+        <%#= link_to "Team", team_path, class: "hover:underline" %>
+        <%#= link_to "Contact", contact_us_path, class: "hover:underline" %>
+<!--        <a class="hover:underline" href="https://drive.google.com/uc?export=download&id=1Lcp2Lwd8OXvDjMrxX_APhu4sWqD15njq" target="_blank" rel="noopener noreferrer">Press Kit</a>-->
+<!--        <a><%#= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %></a>-->
+      </div>
+<!--      <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->
+<!--        <i class="fa fa-bars" style="margin-left: 4px"></i>-->
+<!--      </a>-->
     </div>
 
-    <%= yield %>
-  </div>
+    <!--    <div class="topnav" id="myTopnav">-->
+    <!--      <div class="flex space-x-4">-->
+    <!--        <nav class="flex space-x-4 mr-2">-->
+    <!--          <h1><%#= link_to "About", about_path, class: "hover:underline" %></h1>-->
+    <!--          <h1><%#= link_to "Photos", photos_path, class: "hover:underline" %></h1>-->
+    <!--          <h1><%#= link_to "Amenities", amenities_path, class: "hover:underline" %></h1>-->
+    <!--          <h1><%#= link_to "Investing", investment_opportunities_path, class: "hover:underline" %></h1>-->
+    <!--          <h1> <%#= link_to "Contact", contact_us_path, class: "hover:underline" %></h1>-->
+    <!--          <a href="javascript:void(0);" class="icon" onclick="myFunction()">Hi</a>-->
+    <!--          <h1>-->
+    <!--            <a class="hover:underline" href="https://drive.google.com/uc?export=download&id=131i4N32XQVcIGWRRkRDJH2AENlkQ6pj_" target="_blank" rel="noopener noreferrer">-->
+    <!--              Press&nbsp;Kit-->
+    <!--            </a>-->
+    <!--          </h1>-->
+    <!--          <h1><%#= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %></h1>-->
+    <!--        </nav>-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </nav>
+  <%= yield %>
 </main>
+<!--<script>-->
+<!--    function myFunction() {-->
+<!--        var x = document.getElementById("myTopnav");-->
+<!--        if (x.className === "topnav") {-->
+<!--            x.className += " responsive";-->
+<!--        } else {-->
+<!--            x.className = "topnav";-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
 </body>
 </html>
