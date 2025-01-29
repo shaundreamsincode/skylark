@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skylark</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+<header class="flex justify-between items-center p-6 bg-gray-800 shadow-md">
+  <h1 class="text-3xl font-bold"><a href="#">Skylark</a></h1>
+  <nav class="hidden md:flex space-x-6">
+    <a href="#features" class="hover:underline">Features</a>
+    <a href="#about" class="hover:underline">About</a>
+    <a href="#contact" class="hover:underline">Contact</a>
+  </nav>
+  <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+    <i class="fas fa-bars text-xl"></i>
+  </button>
+</header>
+
+<section class="text-center py-20 px-6">
+  <h2 class="text-5xl font-extrabold mb-4">Welcome to Skylark</h2>
+  <p class="text-lg text-gray-400 max-w-2xl mx-auto">A sleek, modern platform designed to elevate your digital experience.</p>
+  <a href="#features" class="mt-6 inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg">Explore Features</a>
+</section>
+
+<section id="features" class="py-16 bg-gray-800 text-center">
+  <h3 class="text-4xl font-bold mb-8">Features</h3>
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-6">
+    <div class="bg-gray-700 p-6 rounded-lg">
+      <i class="fas fa-rocket text-4xl text-blue-400"></i>
+      <h4 class="text-2xl font-semibold mt-4">Fast & Efficient</h4>
+      <p class="text-gray-400">Experience lightning-fast performance and smooth navigation.</p>
+    </div>
+    <div class="bg-gray-700 p-6 rounded-lg">
+      <i class="fas fa-shield-alt text-4xl text-blue-400"></i>
+      <h4 class="text-2xl font-semibold mt-4">Secure & Reliable</h4>
+      <p class="text-gray-400">Your data is protected with top-notch security protocols.</p>
+    </div>
+    <div class="bg-gray-700 p-6 rounded-lg">
+      <i class="fas fa-user-friends text-4xl text-blue-400"></i>
+      <h4 class="text-2xl font-semibold mt-4">User-Friendly</h4>
+      <p class="text-gray-400">An intuitive interface designed for a seamless experience.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="py-16 text-center">
+  <h3 class="text-4xl font-bold mb-6">About Skylark</h3>
+  <p class="text-gray-400 max-w-3xl mx-auto">Skylark is built to provide a sophisticated yet minimalistic digital experience. With cutting-edge features and a focus on user experience, it’s designed to be both powerful and easy to use.</p>
+</section>
+
+<section id="contact" class="py-16 bg-gray-800 text-center">
+  <h3 class="text-4xl font-bold mb-6">Get in Touch</h3>
+  <p class="text-gray-400 max-w-3xl mx-auto">Have questions? Want to learn more? Reach out to us today.</p>
+  <a href="mailto:contact@skylark.com" class="mt-6 inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg">Contact Us</a>
+</section>
+
+<footer class="text-center py-6 bg-gray-900 text-gray-500">
+  <p>&copy; 2025 Skylark. All rights reserved.</p>
+</footer>
+
+<script>
+    document.getElementById("menu-toggle").addEventListener("click", function() {
+        const nav = document.querySelector("nav");
+        nav.classList.toggle("hidden");
+    });
+</script>
+</body>
+</html>

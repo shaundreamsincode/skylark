@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  root "pages#home"
-
-  get "/about", to: "pages#about"
-  get "/projects", to: "pages#projects"
-  get "/resume", to: "pages#resume"
-  get "/photos", to: "pages#photos"
-  get "/contact", to: "pages#contact"
+  root "home#index"
+  #
+  # get "/about", to: "pages#about"
+  # get "/projects", to: "pages#projects"
+  # get "/resume", to: "pages#resume"
+  # get "/photos", to: "pages#photos"
+  # get "/contact", to: "pages#contact"
 =begin
   get "/contact.html.erb", to: "pages#contact.html.erb"
   # get "/about", to: "pages#about"
