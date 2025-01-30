@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="bg-gray-900 text-white font-sans">
+
 <div class="flex h-screen">
   <% if current_user %>
     <!-- Sidebar -->
@@ -49,6 +50,20 @@
 
   <!-- Main Content -->
   <main class="flex-1 p-6 overflow-auto">
+    <!-- Flash Messages -->
+    <div class="container mx-auto p-4">
+      <% if flash[:notice] %>
+        <div class="bg-green-500 text-white p-3 rounded mb-4">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="bg-red-500 text-white p-3 rounded mb-4">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+    </div>
+
     <%= yield %>
   </main>
 </div>

@@ -19,6 +19,10 @@ class User < ApplicationRecord
     first_name + " " + last_name
   end
 
+  def is_member?(project)
+    project.project_memberships.approved.map(&:user).flatten.include?(self)
+  end
+
   private
 
   def downcase_email

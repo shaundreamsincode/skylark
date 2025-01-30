@@ -12,6 +12,6 @@ class Project < ApplicationRecord
   # same project
 
   def members
-    memberships.where(status: :accepted).map(&:user)
+    memberships.where(status: :approved).map(&:user)
   end
 end

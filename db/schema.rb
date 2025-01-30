@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2025_01_30_035305) do
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.integer "status", default: 0, null: false
+    t.text "request_message", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_project_memberships_on_project_id"

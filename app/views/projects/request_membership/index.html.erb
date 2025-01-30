@@ -1,0 +1,14 @@
+<h1 class="text-3xl font-bold mb-6">Request to Join Project</h1>
+<p class="text-gray-400 mb-6">Submit your request to join <strong><%= @project.title %></strong> as a collaborator.</p>
+
+<%= form_with model: @membership, url: project_request_membership_path(@project), method: :post, local: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+
+  <div class="mb-4">
+    <%= f.label :request_message, "Why do you want to join?", class: "block text-gray-200 font-bold" %>
+    <%= f.text_area :request_message, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600", rows: 4 %>
+  </div>
+
+  <%= f.submit "Submit Request", class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+<% end %>
