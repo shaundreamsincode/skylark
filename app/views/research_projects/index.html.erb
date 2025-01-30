@@ -1,7 +1,0 @@
-<h1 class="text-4xl font-bold mb-6">Available Research Projects</h1>
-<% @projects.each do |project| %>
-  <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-    <h2 class="text-2xl font-bold text-blue-400"><%= link_to project.title, research_project_path(project) %></h2>
-    <p class="text-gray-400"><%= project.summary %></p>
-  </div>
-<% end %>
