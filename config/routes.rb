@@ -2,10 +2,11 @@
 
 Rails.application.routes.draw do
   root "home#index"
-  get "/login", to: "sessions#new"
-  get "dashboard", to: "dashboard#index"
 
-  resources :sessions, only: [:create, :destroy]
+  get "/login", to: "sessions#new", as: "login"
+  delete "/logout", to: "sessions#destroy", as: "logout"
+
+  get "dashboard", to: "dashboard#index"
 
   resources :projects do
     resources :project_memberships, only: [:create, :index, :update]
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :explore_projects, only: :index
+  resource :user_settings, only: [:show, :update]
 
   resources :notifications, only: [:index] do
     member do

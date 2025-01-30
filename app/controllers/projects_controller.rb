@@ -24,6 +24,25 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @project.update(project_params)
+      redirect_to project_path(@project), notice: "Project created successfully."
+    else
+      render :edit # TODO - add in flash warnings/notices/etc
+    end
+  end
+
+  def destroy
+    if @project.destroy
+      redirect_to projects_path, notice: "Project deleted successfully."
+    else
+      render :edit # TODO - add in flash warnings/notices/etc
+    end
+  end
+
   private
 
   def set_project

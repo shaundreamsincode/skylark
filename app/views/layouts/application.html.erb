@@ -10,132 +10,47 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-  <style>
-      /*.topnav {*/
-      /*    overflow: hidden;*/
-      /*}*/
-
-      .topnav a {
-          float: left;
-          display: block;
-          color: black;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-      }
-
-      .topnav a:hover {
-          background-color: #ddd;
-          color: black;
-      }
-
-      .topnav a.active {
-          color: white;
-      }
-
-      .topnav .icon {
-          display: none;
-      }
-
-      /*@media screen and (max-width: 600px) {*/
-      /*    !* Hide all links except the hamburger menu button *!*/
-      /*    .topnav a {*/
-      /*        display: none; !* Hides all links *!*/
-      /*    }*/
-
-      /*    .topnav a.icon {*/
-      /*        float: right;*/
-      /*        display: block; !* Displays only the hamburger icon *!*/
-      /*    }*/
-      /*}*/
-
-      /*@media screen and (max-width: 600px) {*/
-      /*    .topnav.responsive {*/
-      /*        position: relative;*/
-      /*    }*/
-
-      /*    .topnav.responsive .icon {*/
-      /*        position: absolute;*/
-      /*        right: 0;*/
-      /*        top: 0;*/
-      /*    }*/
-
-      /*    .topnav.responsive a {*/
-      /*        float: none;*/
-      /*        display: block; !* Displays all links in dropdown when responsive class is added *!*/
-      /*        text-align: left;*/
-      /*    }*/
-      /*}*/
-  </style>
 </head>
-
 <body class="bg-gray-900 text-white font-sans">
-<!-- Main Content -->
-<main class="container mx-auto px-4 py-4 min-h-screen">
-  <nav class="flex justify-between items-center mb-4 mb-6">
-    <h3>
-      <%#= link_to "Skylark", root_path, class: "font-header-text text-2xl text-1xl font-extrabold hover:underline mr-4" %>
-    </h3>
-    <!--    <h3>-->
-    <%#= link_to image_tag("roma_cube_logo_official.png", alt: "The Cube Logo", class: "h-8 w-auto"), dashboard_path, class: "mr-4" %>
-    <!--    </h3>-->
+<div class="flex h-screen">
+  <% if current_user %>
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 p-6 hidden md:block">
+      <h1 class="text-2xl font-bold mb-6">
+        <%= link_to "Skylark", dashboard_path %>
+      </h1>
+      <nav>
+        <ul class="space-y-4">
+          <li>
+            <%= link_to "Dashboard", dashboard_path,
+                        class: "block p-2 rounded #{current_page?(dashboard_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white' }" %>
+          </li>
+          <li>
+            <%= link_to "My Projects", projects_path,
+                        class: "block p-2 rounded #{current_page?(projects_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white'}" %>
+          </li>
+          <li>
+            <%= link_to "Explore Projects", explore_projects_path,
+                        class: "block p-2 rounded #{current_page?(explore_projects_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white'}" %>
+          </li>
+          <li>
+            <%= link_to "Settings", user_settings_path,
+                        class: "block p-2 rounded #{current_page?(user_settings_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white'}" %>
+          </li>
+          <li>
+            <%= link_to "Logout", "/logout", method: :delete,
+                        class: "block p-2 rounded text-gray-300 hover:text-white",
+                        data: { confirm: "Are you sure you want to log out?" } %>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  <% end %>
 
-    <div class="topnav" id="myTopnav">
-      <div class="mr-2">
-        <%#= link_to "Resume", resume_path, class: "hover:underline" %>
-        <%#= link_to "Contact", contact_path, class: "hover:underline" %>
-        <%#= link_to "Projects", projects_path, class: "hover:underline" %>
-        <%#= link_to "Photos", photos_path, class: "hover:underline" %>
-        <%#= link_to "Contact", contact_path, class: "hover:underline" %>
-
-        <%#= link_to "Home", dashboard_path, class: "hover:underline" %>
-        <%#= link_to "About", about_path, class: "hover:underline" %>
-        <%#= link_to "Photos", photos_path, class: "hover:underline" %>
-        <%#= link_to "Amenities", amenities_path, class: "hover:underline" %>
-        <%#= link_to "Investing", investment_opportunities_path, class: "hover:underline" %>
-        <%#= link_to "Team", team_path, class: "hover:underline" %>
-        <%#= link_to "Contact", contact_us_path, class: "hover:underline" %>
-<!--        <a class="hover:underline" href="https://drive.google.com/uc?export=download&id=1Lcp2Lwd8OXvDjMrxX_APhu4sWqD15njq" target="_blank" rel="noopener noreferrer">Press Kit</a>-->
-<!--        <a><%#= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %></a>-->
-      </div>
-<!--      <a href="javascript:void(0);" class="icon" onclick="myFunction()">-->
-<!--        <i class="fa fa-bars" style="margin-left: 4px"></i>-->
-<!--      </a>-->
-    </div>
-
-    <!--    <div class="topnav" id="myTopnav">-->
-    <!--      <div class="flex space-x-4">-->
-    <!--        <nav class="flex space-x-4 mr-2">-->
-    <!--          <h1><%#= link_to "About", about_path, class: "hover:underline" %></h1>-->
-    <!--          <h1><%#= link_to "Photos", photos_path, class: "hover:underline" %></h1>-->
-    <!--          <h1><%#= link_to "Amenities", amenities_path, class: "hover:underline" %></h1>-->
-    <!--          <h1><%#= link_to "Investing", investment_opportunities_path, class: "hover:underline" %></h1>-->
-    <!--          <h1> <%#= link_to "Contact", contact_us_path, class: "hover:underline" %></h1>-->
-    <!--          <a href="javascript:void(0);" class="icon" onclick="myFunction()">Hi</a>-->
-    <!--          <h1>-->
-    <!--            <a class="hover:underline" href="https://drive.google.com/uc?export=download&id=131i4N32XQVcIGWRRkRDJH2AENlkQ6pj_" target="_blank" rel="noopener noreferrer">-->
-    <!--              Press&nbsp;Kit-->
-    <!--            </a>-->
-    <!--          </h1>-->
-    <!--          <h1><%#= button_to "Logout", "/logout", method: :delete, class: "hover:underline bg-transparent border-none cursor-pointer" %></h1>-->
-    <!--        </nav>-->
-    <!--      </div>-->
-    <!--    </div>-->
-  </nav>
-  <%= yield %>
-</main>
-<!--<script>-->
-<!--    function myFunction() {-->
-<!--        var x = document.getElementById("myTopnav");-->
-<!--        if (x.className === "topnav") {-->
-<!--            x.className += " responsive";-->
-<!--        } else {-->
-<!--            x.className = "topnav";-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-
+  <!-- Main Content -->
+  <main class="flex-1 p-6 overflow-auto">
+    <%= yield %>
+  </main>
+</div>
 </body>
 </html>
