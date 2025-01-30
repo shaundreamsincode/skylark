@@ -1,0 +1,10 @@
+<% if project.sponsor == user %>
+  <%= link_to "Edit Project", edit_research_project_path(project), class: "btn btn-primary" %>
+  <%= link_to "Delete", research_project_path(project), method: :delete, class: "btn btn-danger" %>
+<% else %>
+  <% if project.approved_contributors.include?(user) %>
+    <p>You are a contributor to this project.</p>
+  <% else %>
+    <%= button_to "Request to Join", contribution_requests_path(research_project_id: project.id), method: :post, class: "btn btn-secondary" %>
+  <% end %>
+<% end %>

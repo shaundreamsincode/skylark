@@ -1,0 +1,18 @@
+<%= form_with model: @project, local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :title, "Project Title", class: "block text-gray-200 font-bold" %>
+    <%= f.text_field :title, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :summary, "Summary", class: "block text-gray-200 font-bold" %>
+    <%= f.text_area :summary, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600", rows: 3 %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description, "Full Description", class: "block text-gray-200 font-bold" %>
+    <%= f.text_area :description, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600", rows: 6 %>
+  </div>
+
+  <%= f.submit class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+<% end %>

@@ -62,3 +62,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'tailwindcss-rails'
 
 gem 'will_paginate', '~> 4.0'
+
+gem 'faker'

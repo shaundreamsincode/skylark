@@ -10,38 +10,83 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_28_091659) do
+ActiveRecord::Schema.define(version: 2025_01_30_035305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "inquiries", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "subject"
-    t.text "body"
+  create_table "collaboration_requests", force: :cascade do |t|
+    t.bigint "research_project_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["research_project_id"], name: "index_collaboration_requests_on_research_project_id"
+    t.index ["user_id"], name: "index_collaboration_requests_on_user_id"
+  end
+
+  create_table "collaborator_notes", force: :cascade do |t|
+    t.bigint "research_project_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "entry_type", default: 0, null: false
+    t.text "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["research_project_id"], name: "index_collaborator_notes_on_research_project_id"
+    t.index ["user_id"], name: "index_collaborator_notes_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "target_id", null: false
+    t.string "target_type", null: false
+    t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "page_views", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "page_name"
-    t.string "ip_address"
-    t.text "user_agent"
+  create_table "research_projects", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "summary"
+    t.text "description"
+    t.bigint "sponsor_id", null: false
+    t.integer "visibility", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_page_views_on_user_id"
+    t.index ["sponsor_id"], name: "index_research_projects_on_sponsor_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "password_digest"
+    t.string "password_digest", null: false
+    t.text "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "page_views", "users"
+  add_foreign_key "collaboration_requests", "research_projects"
+  add_foreign_key "collaboration_requests", "users"
+  add_foreign_key "collaborator_notes", "research_projects"
+  add_foreign_key "collaborator_notes", "users"
+  add_foreign_key "research_projects", "users", column: "sponsor_id"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end
