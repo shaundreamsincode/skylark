@@ -74,9 +74,9 @@
                           class: "block p-2 rounded text-gray-300 hover:text-white" %>
             </li>
             <li>
-              <%= link_to "Logout", "/logout", method: :delete,
-                          class: "block p-2 rounded text-gray-300 hover:text-white",
-                          data: { confirm: "Are you sure you want to log out?" } %>
+              <%= button_to "Logout", logout_path, method: :delete,
+                            class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded",
+                            data: { confirm: "Are you sure you want to log out?" } %>
             </li>
           </ul>
         </nav>
