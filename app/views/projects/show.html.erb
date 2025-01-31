@@ -32,6 +32,12 @@
     <%= button_to "View Notes", project_notes_path(@project), method: :get, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
   </div>
 
+  <!-- Information Requests Section -->
+  <div class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-blue-400 mb-4">Information Requests</h2>
+    <%= button_to "View Information Requests", project_information_requests_path(@project), method: :get, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+
   <!-- Tags -->
   <div class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
     <h2 class="text-3xl font-bold text-blue-400 mb-4">Tags</h2>

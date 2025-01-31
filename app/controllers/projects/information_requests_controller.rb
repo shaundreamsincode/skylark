@@ -5,6 +5,10 @@ class Projects::InformationRequestsController < Projects::ApplicationController
     @information_requests = @project.information_requests.order(created_at: :desc)
   end
 
+  def show
+    @information_request = InformationRequest.find(params[:id])
+  end
+
   def new
     @information_request = @project.information_requests.new
   end
