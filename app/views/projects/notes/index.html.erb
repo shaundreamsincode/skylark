@@ -1,0 +1,15 @@
+<h1 class="text-3xl font-bold mb-6">Project Notes</h1>
+<%= link_to "Add Note", new_project_note_path(@project), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-6 inline-block" %>
+
+<% if @notes.present? %>
+  <ul class="bg-gray-800 p-4 rounded-lg shadow-lg divide-y divide-gray-600">
+    <% @notes.each do |note| %>
+      <li class="py-4 flex justify-between items-center">
+        <span class="text-gray-300 font-bold mb-2"><%= link_to note.title, project_note_path(@project, note), class: "text-blue-400 hover:underline" %></span>
+        <p class="text-sm text-gray-500">By <%= note.user.full_name %> - <%= note.entry_type.capitalize %> - <%= note.created_at.strftime("%B %d, %Y") %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="text-gray-500 italic">No notes have been added yet.</p>
+<% end %>

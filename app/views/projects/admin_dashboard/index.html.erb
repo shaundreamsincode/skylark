@@ -1,0 +1,25 @@
+<div class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+  <h2 class="text-2xl font-bold text-blue-400 mb-4">Membership Requests</h2>
+  <% if @membership_requests.present? %>
+    <ul class="divide-y divide-gray-600">
+      <% @membership_requests.each do |request| %>
+        <li class="py-4 flex justify-between items-center">
+          <span class="text-gray-300"><%= request.user.full_name %> - <%= request.request_message %></span>
+          <div class="flex space-x-2">
+            <%= button_to "Approve", project_membership_path(@project, request), method: :patch, params: { status: "approved" }, class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>
+            <%= button_to "Reject", project_membership_path(@project, request), method: :patch, params: { status: "rejected" }, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500 italic">No pending membership requests.</p>
+  <% end %>
+</div>
+
+<div class="mt-8 flex space-x-4">
+  <%= link_to "Edit Project", edit_project_path(@project), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+  <%= button_to "Delete Project", project_path(@project), method: :delete,
+                class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded",
+                data: { confirm: "Are you sure you want to delete this project?" } %>
+</div>

@@ -7,10 +7,17 @@
         <%= link_to project.title, project_path(project) %>
       </h2>
       <p class="text-gray-400"><%= project.summary %></p>
+      <p class="text-sm text-gray-500 italic">
+        <% if project.user == current_user %>
+          (Owner)
+        <% else %>
+          (Collaborator)
+        <% end %>
+      </p>
     </div>
   <% end %>
 <% else %>
-  <p class="text-gray-300">You have no projects, yet.</p>
+  <p class="text-gray-300">You have no projects yet.</p>
 <% end %>
 
 <div class="mt-6">

@@ -1,0 +1,20 @@
+<h1 class="text-3xl font-bold mb-6">Add Project Note</h1>
+
+<%= form_with model: @note, url: project_notes_path(@project), method: :post, local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :title, "Title", class: "block text-gray-200 font-bold" %>
+    <%= f.text_field :title, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :entry_type, "Note Type", class: "block text-gray-200 font-bold" %>
+    <%= f.select :entry_type, ProjectNote.entry_types.keys.map { |type| [type.capitalize, type] }, {}, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :content, "Content", class: "block text-gray-200 font-bold" %>
+    <%= f.text_area :content, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600", rows: 4 %>
+  </div>
+
+  <%= f.submit "Save Note", class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+<% end %>

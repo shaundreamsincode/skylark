@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2025_01_30_035305) do
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.integer "entry_type", default: 0, null: false
+    t.text "title", null: false
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

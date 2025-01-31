@@ -24,19 +24,20 @@
         <ul class="space-y-4">
           <li>
             <%= link_to "Dashboard", dashboard_path,
-                        class: "block p-2 rounded #{current_page?(dashboard_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white' }" %>
+                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
+<!--                        class: "block p-2 rounded #{current_page?(dashboard_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white' }" %>-->
           </li>
           <li>
-            <%= link_to "My Projects", projects_path,
-                        class: "block p-2 rounded #{current_page?(projects_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white'}" %>
+            <%= link_to "Projects", projects_path,
+                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
           </li>
           <li>
-            <%= link_to "Explore Projects", explore_projects_path,
-                        class: "block p-2 rounded #{current_page?(explore_projects_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white'}" %>
+            <%= link_to "Explore", explore_index_path,
+                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
           </li>
           <li>
             <%= link_to "Settings", user_settings_path,
-                        class: "block p-2 rounded #{current_page?(user_settings_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white'}" %>
+                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
           </li>
           <li>
             <%= link_to "Logout", "/logout", method: :delete,

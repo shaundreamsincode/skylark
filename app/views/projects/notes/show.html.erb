@@ -1,0 +1,7 @@
+<div class="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+  <h1 class="text-3xl font-bold text-white mb-4"><%= @note.title %></h1>
+  <p class="text-sm text-gray-500 mb-2">By <%= @note.user.full_name %> - <%= @note.entry_type.capitalize %> - <%= @note.created_at.strftime("%B %d, %Y") %></p>
+  <p class="text-gray-300 text-lg mb-6 border-l-4 border-blue-500 pl-4"><%= @note.content %></p>
+
+  <%= link_to "Back to Notes", project_notes_path(@note.project), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+</div>

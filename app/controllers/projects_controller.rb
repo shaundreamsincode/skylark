@@ -3,8 +3,11 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    # TODO - also add in projects the user is a collaborator on...
-    @projects = Project.where(user: current_user)
+    # Show projects the user owns and projects they are a member of
+    owned_projects = Project.where(user: current_user)
+    member_projects = Project.joins(:project_memberships).where(project_memberships: { user: current_user, status: "approved" })
+
+    @projects = (owned_projects + member_projects).uniq
   end
 
   def show
@@ -28,7 +31,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to project_path(@project), notice: "Project created successfully."
+      redirect_to project_path(@project), notice: "Project updated successfully."
     else
       render :edit # TODO - add in flash warnings/notices/etc
     end

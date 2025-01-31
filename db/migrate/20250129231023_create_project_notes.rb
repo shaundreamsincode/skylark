@@ -5,6 +5,8 @@ class CreateProjectNotes < ActiveRecord::Migration[6.1]
 
       t.references :user, null: false, foreign_key: true
       t.integer :entry_type, default: 0, null: false # enum
+
+      t.text :title, null: false
       t.text :content, null: false
 
       t.timestamps
