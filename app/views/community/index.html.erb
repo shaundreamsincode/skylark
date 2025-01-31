@@ -1,0 +1,38 @@
+<h1 class="text-3xl font-bold mb-6">Community</h1>
+
+<!-- Organizations Section -->
+<div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+  <h2 class="text-2xl font-bold text-blue-400 mb-4">Organizations</h2>
+  <% if @organizations.present? %>
+    <ul class="divide-y divide-gray-600">
+      <% @organizations.each do |organization| %>
+        <li class="py-4">
+          <h3 class="text-xl font-bold text-white">
+            <%= link_to organization.name, organization_path(organization), class: "hover:underline text-blue-400" %>
+          </h3>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500 italic">No organizations found.</p>
+  <% end %>
+</div>
+
+<!-- Users Section -->
+<div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+  <h2 class="text-2xl font-bold text-blue-400 mb-4">Users</h2>
+  <% if @users.present? %>
+    <ul class="divide-y divide-gray-600">
+      <% @users.each do |user| %>
+        <li class="py-4">
+          <h3 class="text-xl font-bold text-white">
+            <%= user.full_name %>
+          </h3>
+          <p class="text-gray-400"><%= user.email %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500 italic">No users found.</p>
+  <% end %>
+</div>
