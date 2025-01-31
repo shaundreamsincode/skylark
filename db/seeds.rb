@@ -2,7 +2,7 @@
 ProjectTag.destroy_all
 ProjectMembership.destroy_all
 ProjectNote.destroy_all
-ProjectNotification.destroy_all
+# ProjectNotification.destroy_all
 Project.destroy_all
 OrganizationMembership.destroy_all
 Organization.destroy_all
