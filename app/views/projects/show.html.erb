@@ -32,6 +32,22 @@
     <%= button_to "View Notes", project_notes_path(@project), method: :get, class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
   </div>
 
+  <!-- Tags -->
+  <div class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-blue-400 mb-4">Tags</h2>
+    <% if @project.tags.present? %>
+      <ul class="divide-y divide-gray-600">
+        <% @project.tags.each do |tag| %>
+          <li class="py-2 text-gray-300 flex justify-between items-center">
+            <span><%= link_to tag.name, tag_path(tag) %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-gray-500 italic">This project does not any tags.</p>
+    <% end %>
+  </div>
+
   <!-- Project Controls -->
   <% if @project.user == current_user %>
     <div class="mt-8 p-6 bg-gray-800 rounded-lg shadow-lg">

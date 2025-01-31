@@ -18,7 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :organizations, only: [:show]
+
+  resources :categories, only: [:show]
+  resources :tags, only: [:show]
   resources :explore, only: :index
+
   resource :user_settings, only: [:show, :update]
 
   resources :notifications, only: [:index] do

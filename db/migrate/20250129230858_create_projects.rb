@@ -5,6 +5,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.text :summary
       t.text :description
       t.references :user, null: false
+      t.references :organization
       t.integer :visibility, default: 0, null: false
 
       t.timestamps
