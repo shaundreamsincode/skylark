@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_31_212548) do
+ActiveRecord::Schema.define(version: 2025_01_31_222456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 2025_01_31_212548) do
     t.index ["user_id"], name: "index_information_requests_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "notifiable_type", null: false
+    t.bigint "notifiable_id", null: false
+    t.string "message"
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "organization_memberships", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "organization_id", null: false
@@ -92,14 +104,6 @@ ActiveRecord::Schema.define(version: 2025_01_31_212548) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_project_notes_on_project_id"
     t.index ["user_id"], name: "index_project_notes_on_user_id"
-  end
-
-  create_table "project_notifications", force: :cascade do |t|
-    t.bigint "project_id", null: false
-    t.text "message"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_project_notifications_on_project_id"
   end
 
   create_table "project_tags", force: :cascade do |t|
@@ -147,13 +151,13 @@ ActiveRecord::Schema.define(version: 2025_01_31_212548) do
   add_foreign_key "information_request_responses", "information_requests"
   add_foreign_key "information_requests", "projects"
   add_foreign_key "information_requests", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "organization_memberships", "organizations"
   add_foreign_key "organization_memberships", "users"
   add_foreign_key "project_memberships", "projects"
   add_foreign_key "project_memberships", "users"
   add_foreign_key "project_notes", "projects"
   add_foreign_key "project_notes", "users"
-  add_foreign_key "project_notifications", "projects"
   add_foreign_key "project_tags", "projects"
   add_foreign_key "project_tags", "tags"
 end

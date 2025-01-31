@@ -58,6 +58,12 @@
         <nav>
           <ul class="space-y-4">
             <li>
+              <form action="<%= search_index_path %>" method="get" class="flex items-center bg-gray-800 p-2 rounded">
+                <input type="text" name="q" placeholder="Search..." class="bg-gray-700 text-white p-2 rounded w-full mr-2">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Search</button>
+              </form>
+            </li>
+            <li>
               <%= link_to "Dashboard", dashboard_path,
                           class: "block p-2 rounded text-gray-300 hover:text-white" %>
             </li>

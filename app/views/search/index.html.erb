@@ -1,0 +1,57 @@
+<h1 class="text-3xl font-bold mb-6">Search Results for: <%= @query %></h1>
+
+<% if @projects.present? %>
+  <h2 class="text-2xl font-bold text-blue-400 mb-4">Projects</h2>
+  <ul class="divide-y divide-gray-600">
+    <% @projects.each do |project| %>
+      <li class="py-4">
+        <h3 class="text-xl font-bold text-white">
+          <%= link_to project.title, project_path(project), class: "hover:underline text-blue-400" %>
+        </h3>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @organizations.present? %>
+  <h2 class="text-2xl font-bold text-blue-400 mt-6 mb-4">Organizations</h2>
+  <ul class="divide-y divide-gray-600">
+    <% @organizations.each do |org| %>
+      <li class="py-4">
+        <h3 class="text-xl font-bold text-white">
+          <%= link_to org.name, organization_path(org), class: "hover:underline text-blue-400" %>
+        </h3>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @tags.present? %>
+  <h2 class="text-2xl font-bold text-blue-400 mt-6 mb-4">Tags</h2>
+  <ul class="divide-y divide-gray-600">
+    <% @tags.each do |tag| %>
+      <li class="py-4">
+        <h3 class="text-xl font-bold text-white">
+          <%= link_to tag.name, tag_path(tag), class: "hover:underline text-blue-400" %>
+        </h3>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @categories.present? %>
+  <h2 class="text-2xl font-bold text-blue-400 mt-6 mb-4">Categories</h2>
+  <ul class="divide-y divide-gray-600">
+    <% @categories.each do |category| %>
+      <li class="py-4">
+        <h3 class="text-xl font-bold text-white">
+          <%= link_to category.name, category_path(category), class: "hover:underline text-blue-400" %>
+        </h3>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @projects.blank? && @organizations.blank? && @tags.blank? && @categories.blank? %>
+  <p class="text-gray-500 italic">No results found.</p>
+<% end %>

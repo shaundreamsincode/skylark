@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   resources :tags, only: [:show]
   resources :explore, only: :index
   resources :community, only: :index
+  resources :search, only: :index
 
+  resources :users, only: :index
   resource :user_settings, only: [:show, :update]
 
   resources :notifications, only: [:index] do
