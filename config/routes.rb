@@ -31,4 +31,12 @@ Rails.application.routes.draw do
       patch :mark_as_read
     end
   end
+
+  ### SUPER ADMIN
+  namespace :super_admin do
+    get "dashboard", to: "dashboard#index"
+
+    resources :users
+    resources :organizations
+  end
 end
