@@ -1,4 +1,4 @@
-class Projects::AdminDashboardController < Projects::ApplicationController
+class Projects::AdminPanelController < Projects::ApplicationController
   def index
     @membership_requests = @project.project_memberships.pending
     @members = @project.project_memberships.approved

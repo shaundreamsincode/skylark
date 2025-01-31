@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :projects do
     scope module: :projects do
       resources :preview, only: :index
-      resources :admin_dashboard, only: :index
+      resources :admin_panel, only: :index
       resources :memberships, only: [:new, :create, :update]
       resources :notes, only: [:index, :show, :new, :create]
     end
