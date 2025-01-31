@@ -1,6 +1,4 @@
 class SuperAdmin::UsersController < SuperAdmin::SuperAdminController
-  before_action :require_super_admin
-
   def index
     @users = User.all
   end

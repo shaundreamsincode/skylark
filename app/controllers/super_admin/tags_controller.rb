@@ -1,6 +1,4 @@
 class SuperAdmin::TagsController < SuperAdmin::SuperAdminController
-  before_action :require_super_admin
-
   def index
     @tags = Tag.all
   end
@@ -42,12 +40,6 @@ class SuperAdmin::TagsController < SuperAdmin::SuperAdminController
   end
 
   private
-
-  def require_super_admin
-    unless current_user&.super_admin?
-      redirect_to root_path, alert: "Access denied."
-    end
-  end
 
   def tag_params
     params.require(:tag).permit(:name)

@@ -1,6 +1,24 @@
 <div class="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
   <h1 class="text-3xl font-bold text-white mb-6">Category: <%= @category.name %></h1>
 
+  <% if @category.description.present? %>
+    <p class="text-gray-300 mb-6"><%= @category.description %></p>
+  <% end %>
+
+  <h2 class="text-2xl font-bold text-blue-400 mb-4">Tags</h2>
+  <% if @tags.present? %>
+    <div class="flex flex-wrap gap-4 mb-6">
+      <% @tags.each do |tag| %>
+        <%= link_to tag_path(tag), class: "bg-gray-700 text-white px-4 py-2 rounded text-sm hover:bg-gray-600" do %>
+          <%= tag.name %>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 italic">No tags found in this category.</p>
+  <% end %>
+
+  <h2 class="text-2xl font-bold text-blue-400 mb-4">Projects</h2>
   <% if @projects.present? %>
     <ul class="divide-y divide-gray-600">
       <% @projects.each do |project| %>

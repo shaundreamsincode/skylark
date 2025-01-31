@@ -1,7 +1,14 @@
-<%= form_with model: @category, url: @category.new_record? ? super_admin_categories_path : super_admin_category_path(@category), local: true do |f| %>
+<%= form_with model: @category, url: @category.new_record? ? super_admin_categories_path : super_admin_category_path(@category), method: @category.new_record? ? :post : :patch do |f| %>
+
+<%#= form_with model: @category, local: true do |f| %>
   <div class="mb-4">
     <%= f.label :name, "Category Name", class: "block text-gray-200 font-bold" %>
     <%= f.text_field :name, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description, "Description", class: "block text-gray-200 font-bold" %>
+    <%= f.text_area :description, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600", rows: 4 %>
   </div>
 
   <div class="mb-4">

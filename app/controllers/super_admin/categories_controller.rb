@@ -41,13 +41,7 @@ class SuperAdmin::CategoriesController < SuperAdmin::SuperAdminController
 
   private
 
-  def require_super_admin
-    unless current_user&.super_admin?
-      redirect_to root_path, alert: "Access denied."
-    end
-  end
-
   def category_params
-    params.require(:category).permit(:name, tag_ids: [])
+    params.require(:category).permit(:name, :description, tag_ids: [])
   end
 end

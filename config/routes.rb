@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   end
 
   # Public, short-link access for Information Requests
-  get "/request_for_information/:token", to: "public_requests#show", as: "public_request_form"
+  get "/request_for_information/:token", to: "public_requests#show.html.erb", as: "public_request_form"
   get "/request_for_information/success", to: "public_requests#success", as: "public_request_success"
   post "/request_for_information/:token", to: "public_requests#submit", as: "public_request_submit"
 
