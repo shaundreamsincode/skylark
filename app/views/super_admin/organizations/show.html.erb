@@ -1,3 +1,37 @@
-<h1 class="text-3xl font-bold mb-6">Organization Details</h1>
-<p><strong>Name:</strong> <%= @organization.name %></p>
-<%= link_to "Back", super_admin_organizations_path, class: "bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" %>
+<h1 class="text-3xl font-bold mb-6">Organization: <%= @organization.name %></h1>
+
+<h2 class="text-2xl font-bold text-blue-400 mb-4">Members</h2>
+<table class="w-full text-left bg-gray-800 rounded-lg shadow-lg">
+  <thead>
+  <tr>
+    <th class="p-3">User</th>
+    <th class="p-3">Role</th>
+    <th class="p-3">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @memberships.each do |membership| %>
+    <tr class="border-b border-gray-700">
+      <td class="p-3 text-white"><%= membership.user.full_name %></td>
+      <td class="p-3 text-white">
+        <%= form_with url: update_role_super_admin_organization_path(@organization, user_id: membership.user.id), method: :patch, local: true do |f| %>
+          <%= f.select :role, OrganizationMembership.roles.keys, { selected: membership.role }, class: "bg-gray-700 text-white p-2 rounded" %>
+          <%= f.submit "Update", class: "ml-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded" %>
+        <% end %>
+      </td>
+      <td class="p-3">
+        <%= button_to "Remove", remove_member_super_admin_organization_path(@organization, user_id: membership.user.id), method: :delete, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2 class="text-2xl font-bold text-blue-400 mt-6 mb-4">Add Member</h2>
+<%= form_with url: add_member_super_admin_organization_path(@organization), method: :post, local: true do |f| %>
+  <div class="flex space-x-4">
+    <%= f.collection_select :user_id, @users, :id, :full_name, prompt: "Select User", class: "bg-gray-700 text-white p-2 rounded" %>
+    <%= f.select :role, OrganizationMembership.roles.keys, prompt: "Select Role", class: "bg-gray-700 text-white p-2 rounded" %>
+    <%= f.submit "Add User", class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>

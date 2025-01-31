@@ -1,5 +1,3 @@
-#   get "/login", to: "sessions#new"
-
 Rails.application.routes.draw do
   root "home#index"
 
@@ -49,7 +47,13 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index"
 
     resources :users
-    resources :organizations
+    resources :organizations do
+      member do
+        post "add_member"
+        delete "remove_member"
+        patch "update_role"
+      end
+    end
     resources :tags
     resources :categories
   end
