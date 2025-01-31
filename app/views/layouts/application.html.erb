@@ -14,39 +14,74 @@
 <body class="bg-gray-900 text-white font-sans">
 
 <div class="flex h-screen">
-  <% if current_user && !controller.class.name.start_with?("SuperAdmin::") %>
+  <% if current_user %>
     <!-- Sidebar -->
-    <aside class="w-64 bg-gray-800 p-6 hidden md:block">
-      <h1 class="text-2xl font-bold mb-6">
-        <%= link_to "Skylark", dashboard_path %>
-      </h1>
-      <nav>
-        <ul class="space-y-4">
-          <li>
-            <%= link_to "Dashboard", dashboard_path,
-                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
-<!--                        class: "block p-2 rounded #{current_page?(dashboard_path) ? 'bg-blue-500 text-white' : 'text-gray-300 hover:text-white' }" %>-->
-          </li>
-          <li>
-            <%= link_to "Projects", projects_path,
-                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
-          </li>
-          <li>
-            <%= link_to "Explore", explore_index_path,
-                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
-          </li>
-          <li>
-            <%= link_to "Settings", user_settings_path,
-                        class: "block p-2 rounded text-gray-300 hover:text-white" %>
-          </li>
-          <li>
-            <%= link_to "Logout", "/logout", method: :delete,
-                        class: "block p-2 rounded text-gray-300 hover:text-white",
-                        data: { confirm: "Are you sure you want to log out?" } %>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+    <% if controller.class.name.start_with?("SuperAdmin::") %>
+      <aside class="w-64 bg-gray-800 p-6 hidden md:block">
+        <h1 class="text-2xl font-bold mb-6">
+          <%= link_to "Super Admin", super_admin_dashboard_path , class: "text-red-500"%>
+        </h1>
+        <nav>
+          <ul class="space-y-4">
+            <li>
+              <%= link_to "Dashboard", super_admin_dashboard_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Users", super_admin_users_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Organizations", super_admin_organizations_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Tags", super_admin_tags_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Categories", super_admin_categories_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Go Back to App", dashboard_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    <% else %>
+      <aside class="w-64 bg-gray-800 p-6 hidden md:block">
+        <h1 class="text-2xl font-bold mb-6">
+          <%= link_to "Skylark", dashboard_path %>
+        </h1>
+        <nav>
+          <ul class="space-y-4">
+            <li>
+              <%= link_to "Dashboard", dashboard_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Projects", projects_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Explore", explore_index_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Settings", user_settings_path,
+                          class: "block p-2 rounded text-gray-300 hover:text-white" %>
+            </li>
+            <li>
+              <%= link_to "Logout", "/logout", method: :delete,
+                          class: "block p-2 rounded text-gray-300 hover:text-white",
+                          data: { confirm: "Are you sure you want to log out?" } %>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    <% end %>
   <% end %>
 
   <!-- Main Content -->

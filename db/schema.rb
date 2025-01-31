@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_31_034506) do
+ActiveRecord::Schema.define(version: 2025_01_31_202107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,28 @@ ActiveRecord::Schema.define(version: 2025_01_31_034506) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_category_tags_on_category_id"
     t.index ["tag_id"], name: "index_category_tags_on_tag_id"
+  end
+
+  create_table "information_request_responses", force: :cascade do |t|
+    t.bigint "information_request_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["information_request_id"], name: "index_information_request_responses_on_information_request_id"
+  end
+
+  create_table "information_requests", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.text "description"
+    t.string "token", null: false
+    t.datetime "expires_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_information_requests_on_project_id"
+    t.index ["token"], name: "index_information_requests_on_token", unique: true
+    t.index ["user_id"], name: "index_information_requests_on_user_id"
   end
 
   create_table "organization_memberships", force: :cascade do |t|
@@ -121,6 +143,9 @@ ActiveRecord::Schema.define(version: 2025_01_31_034506) do
 
   add_foreign_key "category_tags", "categories"
   add_foreign_key "category_tags", "tags"
+  add_foreign_key "information_request_responses", "information_requests"
+  add_foreign_key "information_requests", "projects"
+  add_foreign_key "information_requests", "users"
   add_foreign_key "organization_memberships", "organizations"
   add_foreign_key "organization_memberships", "users"
   add_foreign_key "project_memberships", "projects"

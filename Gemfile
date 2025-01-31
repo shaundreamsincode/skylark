@@ -64,3 +64,5 @@ gem 'tailwindcss-rails'
 gem 'will_paginate', '~> 4.0'
 
 gem 'faker'
+
+gem 'csv'

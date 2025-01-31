@@ -1,0 +1,13 @@
+<%= form_with model: @category, url: @category.new_record? ? super_admin_categories_path : super_admin_category_path(@category), local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, "Category Name", class: "block text-gray-200 font-bold" %>
+    <%= f.text_field :name, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :tag_ids, "Tags", class: "block text-gray-200 font-bold" %>
+    <%= f.collection_select :tag_ids, Tag.all, :id, :name, {}, multiple: true, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+  </div>
+
+  <%= f.submit "Save", class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+<% end %>

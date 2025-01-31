@@ -27,4 +27,7 @@
   <p class="text-gray-500 italic">No notes have been added yet.</p>
 <% end %>
 
-<%= link_to "Add Note", new_project_note_path(@project), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-6 inline-block" %>
+<div class="mt-6 flex space-x-4">
+  <%= link_to "Add Note", new_project_note_path(@project), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+  <%= link_to "Export to CSV", export_project_notes_path(@project, format: :csv), class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>
+</div>

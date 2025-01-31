@@ -21,6 +21,22 @@ class Projects::NotesController < Projects::ApplicationController
     end
   end
 
+  def export
+    require "csv"
+
+    notes = @project.notes.order(created_at: :desc)
+    csv_data = CSV.generate(headers: true) do |csv|
+      csv << ["Title", "Created By", "Created At", "Content"]
+      notes.each do |note|
+        csv << [note.title, note.user.full_name, note.created_at.strftime("%B %d, %Y"), note.content]
+      end
+    end
+
+    respond_to do |format|
+      format.csv { send_data csv_data, filename: "project_notes_#{Time.zone.today}.csv" }
+    end
+  end
+
   private
 
   def note_params

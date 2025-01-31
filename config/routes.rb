@@ -14,7 +14,13 @@ Rails.application.routes.draw do
       resources :preview, only: :index
       resources :admin_panel, only: :index
       resources :memberships, only: [:new, :create, :update]
-      resources :notes, only: [:index, :show, :new, :create]
+      resources :information_requests
+
+      resources :notes, only: [:index, :show, :new, :create] do
+        collection do
+          get :export, format: :csv
+        end
+      end
     end
   end
 
@@ -32,11 +38,19 @@ Rails.application.routes.draw do
     end
   end
 
+  # Public, short-link access for Information Requests
+  get "/request_for_information/:token", to: "public_requests#show", as: "public_request_form"
+  get "/request_for_information/success", to: "public_requests#success", as: "public_request_success"
+  post "/request_for_information/:token", to: "public_requests#submit", as: "public_request_submit"
+
   ### SUPER ADMIN
   namespace :super_admin do
+    root to: "dashboard#index"
     get "dashboard", to: "dashboard#index"
 
     resources :users
     resources :organizations
+    resources :tags
+    resources :categories
   end
 end

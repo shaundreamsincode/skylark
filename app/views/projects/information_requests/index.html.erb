@@ -1,0 +1,31 @@
+<h1 class="text-3xl font-bold mb-6">Information Requests</h1>
+
+<%= link_to "New Information Request", new_project_information_request_path(@project), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>
+
+<% if @information_requests.present? %>
+  <table class="w-full bg-gray-800 rounded-lg shadow-lg mt-4">
+    <thead>
+    <tr class="text-white bg-gray-700">
+      <th class="p-4">Title</th>
+      <th class="p-4">Created By</th>
+      <th class="p-4">Expiration</th>
+      <th class="p-4">Actions</th>
+    </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-600">
+    <% @information_requests.each do |req| %>
+      <tr class="text-gray-300">
+        <td class="p-4"><%= req.title %></td>
+        <td class="p-4"><%= req.user.full_name %></td>
+        <td class="p-4"><%= req.expires_at ? req.expires_at.strftime("%B %d, %Y") : "No expiration" %></td>
+        <td class="p-4">
+          <%= link_to "View", project_information_request_path(@project, req), class: "text-blue-400 hover:underline" %> |
+          <%= link_to "Share Link", public_request_form_url(req.token), target: "_blank", class: "text-green-400 hover:underline" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="text-gray-500 italic">No information requests yet.</p>
+<% end %>

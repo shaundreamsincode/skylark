@@ -1,0 +1,27 @@
+<h1 class="text-3xl font-bold mb-6">Categories</h1>
+<%= link_to "New Category", new_super_admin_category_path, class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>
+<table class="w-full mt-4">
+  <thead>
+  <tr>
+    <th class="p-2 text-left">Name</th>
+    <th class="p-2 text-left">Tags</th>
+    <th class="p-2">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+    <tr>
+      <td class="p-2"><%= link_to category.name, super_admin_category_path(category) %></td>
+      <td class="p-2">
+        <% category.tags.each do |tag| %>
+          <span class="bg-gray-700 text-white px-2 py-1 rounded text-sm"><%= tag.name %></span>
+        <% end %>
+      </td>
+      <td class="p-2">
+        <%= link_to "Edit", edit_super_admin_category_path(category), class: "text-blue-500" %> |
+        <%= link_to "Delete", super_admin_category_path(category), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
