@@ -11,6 +11,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+
+    unless current_user == @project.user || current_user.is_member?(@project)
+      return redirect_to project_preview_index_path(@project)
+    end
   end
 
   def new
