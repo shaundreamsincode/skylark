@@ -15,6 +15,8 @@ class Project < ApplicationRecord
 
   has_many :information_requests, dependent: :destroy
 
+  validates :title, presence: true
+
   # todo  - put a uniq constraint to ensure a user can't be marked as a member twice for the
   # same project
 
