@@ -54,6 +54,7 @@ group :test do
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.0'
   gem 'database_cleaner-active_record', '~> 2.0'
+  gem 'rails-controller-testing', '~> 1.0'
   
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
