@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     if logged_in?
       redirect_to dashboard_path
@@ -10,6 +14,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    return redirect_to dashboard_path if logged_in?
+    
     @user = User.new(user_params)
     
     if @user.save

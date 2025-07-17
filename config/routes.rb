@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resources :community, only: :index
   resources :search, only: :index
 
-  resources :users, only: [:index, :new, :create]
+  resources :users, only: [:index, :show, :new, :create]
   resource :user_settings, only: [:show, :update]
 
   resources :notifications, only: [:index] do
