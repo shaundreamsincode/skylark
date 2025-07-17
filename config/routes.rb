@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "/login", to: "sessions#new", as: "login"
+  get "/signup", to: "users#new", as: "signup"
   delete "/logout", to: "sessions#destroy", as: "logout"
   resources :sessions, only: [:create, :destroy]
 
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
   resources :community, only: :index
   resources :search, only: :index
 
-  resources :users, only: :index
+  resources :users, only: [:index, :show, :new, :create]
   resource :user_settings, only: [:show, :update]
 
   resources :notifications, only: [:index] do

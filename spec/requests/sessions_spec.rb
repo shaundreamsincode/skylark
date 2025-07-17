@@ -8,6 +8,13 @@ RSpec.describe 'Sessions', type: :request do
       get login_path
       expect(response).to have_http_status(:success)
     end
+
+    it 'redirects to dashboard if user is already logged in' do
+      login_as(user)
+      get login_path
+      
+      expect(response).to redirect_to(dashboard_path)
+    end
   end
 
   describe 'POST /sessions' do
