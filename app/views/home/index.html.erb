@@ -9,16 +9,40 @@
 </head>
 <body class="bg-gray-900 text-white font-sans">
 <header class="flex justify-between items-center p-6 bg-gray-800 shadow-md">
-  <h1 class="text-3xl font-bold"><a href="#">Skylark</a></h1>
-  <nav class="hidden md:flex space-x-6">
+  <h1 class="text-3xl font-bold">
+    <%= link_to "Skylark", root_path, class: "hover:text-blue-400 transition-colors" %>
+  </h1>
+  
+  <nav class="hidden md:flex items-center space-x-6">
     <a href="#features" class="hover:underline">Features</a>
     <a href="#about" class="hover:underline">About</a>
     <a href="#contact" class="hover:underline">Contact</a>
+    
+    <!-- Auth buttons -->
+    <div class="flex items-center space-x-3 ml-6 pl-6 border-l border-gray-600">
+      <%= link_to "Login", login_path, class: "px-4 py-2 text-gray-300 hover:text-white transition-colors" %>
+      <%= link_to "Sign Up", signup_path, class: "px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors" %>
+    </div>
   </nav>
+  
   <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
     <i class="fas fa-bars text-xl"></i>
   </button>
 </header>
+
+<!-- Mobile menu -->
+<nav id="mobile-nav" class="hidden md:hidden bg-gray-800 px-6 py-4 border-t border-gray-700">
+  <div class="flex flex-col space-y-3">
+    <a href="#features" class="hover:text-blue-400 transition-colors">Features</a>
+    <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+    <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+    
+    <div class="pt-3 border-t border-gray-600 flex flex-col space-y-2">
+      <%= link_to "Login", login_path, class: "text-center px-4 py-2 text-gray-300 hover:text-white transition-colors" %>
+      <%= link_to "Sign Up", signup_path, class: "text-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors" %>
+    </div>
+  </div>
+</nav>
 
 <section class="text-center py-20 px-6">
   <h2 class="text-5xl font-extrabold mb-4">Welcome to Skylark</h2>
@@ -49,7 +73,7 @@
 
 <section id="about" class="py-16 text-center">
   <h3 class="text-4xl font-bold mb-6">About Skylark</h3>
-  <p class="text-gray-400 max-w-3xl mx-auto">Skylark is built to provide a sophisticated yet minimalistic digital experience. With cutting-edge features and a focus on user experience, it’s designed to be both powerful and easy to use.</p>
+  <p class="text-gray-400 max-w-3xl mx-auto">Skylark is built to provide a sophisticated yet minimalistic digital experience. With cutting-edge features and a focus on user experience, it's designed to be both powerful and easy to use.</p>
 </section>
 
 <section id="contact" class="py-16 bg-gray-800 text-center">
@@ -63,10 +87,10 @@
 </footer>
 
 <script>
-    document.getElementById("menu-toggle").addEventListener("click", function() {
-        const nav = document.querySelector("nav");
-        nav.classList.toggle("hidden");
-    });
+  document.getElementById("menu-toggle").addEventListener("click", function() {
+    const nav = document.getElementById("mobile-nav");
+    nav.classList.toggle("hidden");
+  });
 </script>
 </body>
 </html>

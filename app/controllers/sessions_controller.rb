@@ -2,7 +2,9 @@ class SessionsController < ApplicationController
   skip_before_action :require_login
 
   def new
-    #     redirect_to "/admin_panel" if logged_in?
+    if logged_in?
+      redirect_to dashboard_path
+    end
   end
 
   def create
