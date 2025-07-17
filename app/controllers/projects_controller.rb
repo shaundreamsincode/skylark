@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to projects_path, notice: "Project created successfully."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to project_path(@project), notice: "Project updated successfully."
     else
-      render :edit # TODO - add in flash warnings/notices/etc
+      render :edit, status: :unprocessable_entity # TODO - add in flash warnings/notices/etc
     end
   end
 
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
     if @project.destroy
       redirect_to projects_path, notice: "Project deleted successfully."
     else
-      render :edit # TODO - add in flash warnings/notices/etc
+      render :edit, status: :unprocessable_entity # TODO - add in flash warnings/notices/etc
     end
   end
 

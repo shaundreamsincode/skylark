@@ -6,7 +6,11 @@ class PublicRequestsController < ApplicationController
 
     if @information_request.nil? || (@information_request.expires_at.present? && @information_request.expires_at < Time.current)
       render plain: "This request is no longer available.", status: :not_found
+      return
     end
+
+    # Only render the view if we have a valid request
+    render :show
   end
 
   def submit
@@ -28,7 +32,7 @@ class PublicRequestsController < ApplicationController
       redirect_to root_path, notice: "Your response has been submitted."
     else
       flash[:alert] = "Failed to submit response."
-      render :success
+      render :show, status: :unprocessable_entity
     end
   end
 

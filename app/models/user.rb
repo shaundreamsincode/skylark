@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :projects
   has_many :project_memberships
   has_many :project_notes
+  has_many :notifications
 
   before_save :downcase_email
 
