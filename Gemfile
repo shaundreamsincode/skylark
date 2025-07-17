@@ -49,6 +49,12 @@ group :development do
 end
 
 group :test do
+  # RSpec for testing
+  gem 'rspec-rails', '~> 6.0'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'faker', '~> 3.0'
+  gem 'database_cleaner-active_record', '~> 2.0'
+  
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
@@ -62,7 +68,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'tailwindcss-rails'
 
 gem 'will_paginate', '~> 4.0'
-
-gem 'faker'
 
 gem 'csv'
