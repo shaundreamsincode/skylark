@@ -1,5 +1,5 @@
 class Projects::MembershipsController < Projects::ApplicationController
-  # TODO - add permissioning (?)
+  skip_before_action :authorize_user, only: [:new, :create]
   def new
   end
 

@@ -111,16 +111,6 @@ RSpec.describe 'Projects::Memberships', type: :request do
         login_as(other_user)
       end
 
-      it 'redirects unauthorized users from new' do
-        get new_project_membership_path(project)
-        expect(response).to redirect_to(root_path)
-      end
-
-      it 'redirects unauthorized users from create' do
-        post project_memberships_path(project), params: { request_message: 'Test' }
-        expect(response).to redirect_to(root_path)
-      end
-
       it 'redirects unauthorized users from update' do
         patch project_membership_path(project, membership), params: { status: 'approved' }
         expect(response).to redirect_to(root_path)
