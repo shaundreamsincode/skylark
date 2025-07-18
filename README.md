@@ -169,6 +169,31 @@ Skylark is a collaborative project management and community platform built with 
   docker-compose down -v
   ```
 
+## Deployment
+
+### Render.com (Recommended)
+
+This application is configured for easy deployment on Render.com using Docker.
+
+#### Quick Deploy
+
+1. **Fork or push** this repository to GitHub
+2. **Connect to Render** and create a new Blueprint
+3. **Set environment variables** (especially `RAILS_MASTER_KEY`)
+4. **Deploy** - Render will handle the rest!
+
+#### Manual Setup
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+#### Benefits of Docker on Render
+
+- **Consistent Environment**: Same container in dev and production
+- **Better Performance**: Optimized multi-stage builds
+- **Easier Scaling**: Horizontal scaling with load balancing
+- **Health Monitoring**: Built-in health checks
+- **Resource Efficiency**: Smaller image sizes with Alpine Linux
+
 ## Contributing
 
 1. Fork the repository
