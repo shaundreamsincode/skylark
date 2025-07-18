@@ -2,6 +2,8 @@
 
 This guide covers how to test your dockerized Skylark application.
 
+🌐 **Live Demo**: [https://skylark-3kbo.onrender.com/](https://skylark-3kbo.onrender.com/)
+
 ## Prerequisites
 
 1. **Docker Desktop** installed and running

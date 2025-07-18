@@ -2,6 +2,8 @@
 
 This guide covers deploying your dockerized Skylark application to Render.com.
 
+🌐 **Live Example**: [https://skylark-3kbo.onrender.com/](https://skylark-3kbo.onrender.com/)
+
 ## Prerequisites
 
 1. **Render.com Account** - Sign up at [render.com](https://render.com)
@@ -163,7 +165,7 @@ Your application includes a health check endpoint at `/health` that returns:
 
 ```bash
 # Check service status
-curl https://your-app.onrender.com/health
+curl https://skylark-3kbo.onrender.com/health
 
 # View logs
 # Use Render dashboard or CLI

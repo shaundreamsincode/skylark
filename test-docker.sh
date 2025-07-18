@@ -60,6 +60,7 @@ fi
 echo ""
 echo "🎉 All tests passed! Your application is running at:"
 echo "   http://localhost:3000"
+echo "   Live demo: https://skylark-3kbo.onrender.com/"
 echo ""
 echo "📋 Useful commands:"
 echo "   View logs: docker compose -f docker-compose.dev.yml logs -f"
