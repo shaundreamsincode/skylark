@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root "home#index"
+  
+  # Health check endpoint for Docker/CI testing
+  get '/health', to: proc { [200, {}, ['OK']] }
 
   get "/login", to: "sessions#new", as: "login"
   get "/signup", to: "users#new", as: "signup"

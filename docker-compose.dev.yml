@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: skylark_development
+      POSTGRES_USER: skylark
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_dev_data:/data
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgresql://skylark:password@db:5432/skylark_development
+      REDIS_URL: redis://redis:6379/1
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+      - node_modules_cache:/app/node_modules
+    depends_on:
+      - db
+      - redis
+    command: ./bin/dev
+
+volumes:
+  postgres_dev_data:
+  redis_dev_data:
+  bundle_cache:
+  node_modules_cache: 
