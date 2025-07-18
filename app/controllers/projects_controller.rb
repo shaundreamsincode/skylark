@@ -3,11 +3,13 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    # Show projects the user owns and projects they are a member of
-    owned_projects = Project.where(user: current_user)
-    member_projects = Project.joins(:project_memberships).where(project_memberships: { user: current_user, status: "approved" })
-
-    @projects = (owned_projects + member_projects).uniq
+    @owned_projects = Project.where(user: current_user)
+    
+    @approved_member_projects = Project.joins(:project_memberships)
+      .where(project_memberships: { user: current_user, status: "approved" })
+    
+    @pending_member_projects = Project.joins(:project_memberships)
+      .where(project_memberships: { user: current_user, status: "pending" })
   end
 
   def show

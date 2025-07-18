@@ -1,19 +1,59 @@
-<h1 class="text-4xl font-bold mb-6">My Projects</h1>
+<h1 class="text-4xl font-bold mb-6 text-white">My Projects</h1>
 
-<% if @projects.present? %>
-  <% @projects.each do |project| %>
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-      <h2 class="text-2xl font-bold text-blue-400">
-        <%= link_to project.title, project_path(project) %>
+<% total_projects = @owned_projects.count + @approved_member_projects.count + @pending_member_projects.count %>
+
+<% if total_projects > 0 %>
+  <!-- Owned Projects Section -->
+  <% if @owned_projects.any? %>
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold text-green-400 mb-4 border-b border-green-600 pb-2">
+        Projects I Own (<%= @owned_projects.count %>)
       </h2>
-      <p class="text-gray-400"><%= project.summary %></p>
-      <p class="text-sm text-gray-500 italic">
-        <% if project.user == current_user %>
-          (Owner)
-        <% else %>
-          (Collaborator)
-        <% end %>
-      </p>
+      <% @owned_projects.each do |project| %>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-4 border-l-4 border-green-500">
+          <h3 class="text-xl font-bold text-blue-400">
+            <%= link_to project.title, project_path(project) %>
+          </h3>
+          <p class="text-gray-400 mt-2"><%= project.summary %></p>
+          <p class="text-sm text-green-400 italic mt-2">(Owner)</p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- Approved Member Projects Section -->
+  <% if @approved_member_projects.any? %>
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold text-white mb-4 border-b border-blue-600 pb-2">
+        Projects I'm Collaborating On (<%= @approved_member_projects.count %>)
+      </h2>
+      <% @approved_member_projects.each do |project| %>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-4 border-l-4 border-blue-500">
+          <h3 class="text-xl font-bold text-blue-400">
+            <%= link_to project.title, project_path(project) %>
+          </h3>
+          <p class="text-gray-400 mt-2"><%= project.summary %></p>
+          <p class="text-sm text-blue-400 italic mt-2">(Collaborator)</p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- Pending Member Projects Section -->
+  <% if @pending_member_projects.any? %>
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold text-yellow-400 mb-4 border-b border-yellow-600 pb-2">
+        Pending Membership Requests (<%= @pending_member_projects.count %>)
+      </h2>
+      <% @pending_member_projects.each do |project| %>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-4 border-l-4 border-yellow-500 opacity-75">
+          <h3 class="text-xl font-bold text-blue-400">
+            <%= link_to project.title, project_path(project) %>
+          </h3>
+          <p class="text-gray-400 mt-2"><%= project.summary %></p>
+          <p class="text-sm text-yellow-400 italic mt-2">(Pending Approval)</p>
+        </div>
+      <% end %>
     </div>
   <% end %>
 <% else %>

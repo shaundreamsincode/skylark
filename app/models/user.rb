@@ -13,11 +13,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
 
-  def project_notifications
-    all_projects = projects + project_memberships.map(&:project)
-    ProjectNotification.where(user: user, project: all_projects)
-  end
-
   def full_name
     first_name + " " + last_name
   end
