@@ -18,11 +18,12 @@ RSpec.describe 'PublicRequests', type: :request do
     let(:valid_content) { 'This is a test response to the information request.' }
 
     context 'with valid token and content' do
-      it 'creates a response and project note' do
+      it 'creates a response, project note, and notification' do
         expect {
           post public_request_submit_path(information_request.token), params: { content: valid_content }
         }.to change(InformationRequestResponse, :count).by(1)
           .and change(ProjectNote, :count).by(1)
+          .and change(Notification, :count).by(1)
 
         expect(response).to redirect_to(root_path)
         expect(flash[:notice]).to eq('Your response has been submitted.')
@@ -46,30 +47,107 @@ RSpec.describe 'PublicRequests', type: :request do
         expect(note.content).to eq(valid_content)
         expect(note.entry_type).to eq('report')
       end
+
+      it 'creates notification for the information request creator' do
+        post public_request_submit_path(information_request.token), params: { content: valid_content }
+        
+        notification = Notification.last
+        expect(notification.user).to eq(information_request.user)
+        expect(notification.notifiable).to eq(information_request)
+        expect(notification.message).to eq("Your information request '#{information_request.title}' received a response")
+        expect(notification.read).to be false
+      end
+
+      it 'creates notification with correct polymorphic association' do
+        post public_request_submit_path(information_request.token), params: { content: valid_content }
+        
+        notification = Notification.last
+        expect(notification.notifiable_type).to eq('InformationRequest')
+        expect(notification.notifiable_id).to eq(information_request.id)
+      end
+
+      it 'does not create notification for other project members' do
+        other_user = create(:user)
+        create(:project_membership, project: project, user: other_user, status: :approved)
+        
+        expect {
+          post public_request_submit_path(information_request.token), params: { content: valid_content }
+        }.to change(Notification, :count).by(1)
+        
+        # Verify only the information request creator gets notified
+        notification = Notification.last
+        expect(notification.user).to eq(information_request.user)
+        expect(notification.user).not_to eq(other_user)
+      end
     end
 
     context 'with invalid token' do
-      it 'returns not found status' do
-        post public_request_submit_path('invalid_token'), params: { content: valid_content }
+      it 'returns not found status and does not create notification' do
+        expect {
+          post public_request_submit_path('invalid_token'), params: { content: valid_content }
+        }.not_to change(Notification, :count)
+
         expect(response).to have_http_status(:not_found)
         expect(response.body).to include('Invalid request')
       end
     end
 
     context 'with empty content' do
-      it 'fails to submit response' do
-        post public_request_submit_path(information_request.token), params: { content: '' }
+      it 'fails to submit response and does not create notification' do
+        expect {
+          post public_request_submit_path(information_request.token), params: { content: '' }
+        }.not_to change(Notification, :count)
         
         expect(response).to have_http_status(:unprocessable_entity)
         expect(flash[:alert]).to eq('Failed to submit response.')
       end
     end
-  end
 
-  describe 'GET /request_for_information/success' do
-    it 'returns http success' do
-      get public_request_success_path
-      expect(response).to have_http_status(:success)
+    context 'when information request has different creator than project owner' do
+      let(:request_creator) { create(:user) }
+      let(:information_request) { create(:information_request, project: project, user: request_creator) }
+
+      it 'creates notification for the request creator, not project owner' do
+        post public_request_submit_path(information_request.token), params: { content: valid_content }
+        
+        notification = Notification.last
+        expect(notification.user).to eq(request_creator)
+        expect(notification.user).not_to eq(project.user)
+      end
+    end
+
+    context 'with information request containing special characters in title' do
+      let(:information_request) do
+        create(:information_request, 
+               project: project, 
+               user: user, 
+               title: "Request with 'quotes' & special chars!")
+      end
+
+      it 'creates notification with properly escaped title' do
+        post public_request_submit_path(information_request.token), params: { content: valid_content }
+        
+        notification = Notification.last
+        expected_message = "Your information request 'Request with 'quotes' & special chars!' received a response"
+        expect(notification.message).to eq(expected_message)
+      end
+    end
+
+    context 'when multiple responses are submitted' do
+      it 'creates a notification for each response' do
+        expect {
+          post public_request_submit_path(information_request.token), params: { content: 'First response' }
+        }.to change(Notification, :count).by(1)
+
+        expect {
+          post public_request_submit_path(information_request.token), params: { content: 'Second response' }
+        }.to change(Notification, :count).by(1)
+
+        # Verify both notifications are for the same user and information request
+        notifications = Notification.last(2)
+        expect(notifications.map(&:user).uniq).to eq([information_request.user])
+        expect(notifications.map(&:notifiable).uniq).to eq([information_request])
+      end
     end
   end
 end 

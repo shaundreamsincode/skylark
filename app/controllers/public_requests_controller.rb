@@ -20,7 +20,6 @@ class PublicRequestsController < ApplicationController
     response = @information_request.responses.create(content: params[:content])
 
     if response.persisted?
-      # Automatically create a ProjectNote (TODO - ADD THE SOURCE [MEMBER ENTRY, RFI])
       ProjectNote.create!(
         project: @information_request.project,
         user: @information_request.user, # Owner of the request
