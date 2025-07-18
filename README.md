@@ -2,6 +2,8 @@
 
 Skylark is a collaborative project management and community platform built with Ruby on Rails and React. It provides a space for organizations and individuals to manage projects, share information, and collaborate effectively.
 
+🌐 **Live Demo**: [https://skylark-3kbo.onrender.com/](https://skylark-3kbo.onrender.com/)
+
 ## Features
 
 - **Project Management**
@@ -181,6 +183,8 @@ This application is configured for easy deployment on Render.com using Docker.
 2. **Connect to Render** and create a new Blueprint
 3. **Set environment variables** (especially `RAILS_MASTER_KEY`)
 4. **Deploy** - Render will handle the rest!
+
+**Example**: This project is deployed at [https://skylark-3kbo.onrender.com/](https://skylark-3kbo.onrender.com/)
 
 #### Manual Setup
 
