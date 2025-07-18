@@ -51,6 +51,83 @@ RSpec.describe ProjectMembership, type: :model do
     end
   end
 
+  describe 'notification creation on status change' do
+    let(:user) { create(:user) }
+    let(:project) { create(:project) }
+    let(:membership) { create(:project_membership, user: user, project: project, status: :pending) }
+
+    context 'when status changes to approved' do
+      it 'creates a notification for the user' do
+        expect {
+          membership.update!(status: :approved)
+        }.to change(Notification, :count).by(1)
+      end
+
+      it 'creates notification with correct attributes' do
+        membership.update!(status: :approved)
+        
+        notification = Notification.last
+        expect(notification.user).to eq(user)
+        expect(notification.notifiable).to eq(project)
+        expect(notification.message).to eq("Your membership request for project '#{project.title}' was approved")
+        expect(notification.read).to be false
+      end
+    end
+
+    context 'when status changes to rejected' do
+      it 'creates a notification for the user' do
+        expect {
+          membership.update!(status: :rejected)
+        }.to change(Notification, :count).by(1)
+      end
+
+      it 'creates notification with correct attributes' do
+        membership.update!(status: :rejected)
+        
+        notification = Notification.last
+        expect(notification.user).to eq(user)
+        expect(notification.notifiable).to eq(project)
+        expect(notification.message).to eq("Your membership request for project '#{project.title}' was rejected")
+        expect(notification.read).to be false
+      end
+    end
+
+    context 'when status changes to pending' do
+      it 'does not create a notification' do
+        membership.update!(status: :approved) # First change to approved
+        expect {
+          membership.update!(status: :pending)
+        }.not_to change(Notification, :count)
+      end
+    end
+
+    context 'when other attributes change but status remains the same' do
+      it 'does not create a notification' do
+        expect {
+          membership.update!(request_message: "Updated message")
+        }.not_to change(Notification, :count)
+      end
+    end
+
+    context 'when notification creation fails' do
+      before do
+        allow(Notification).to receive(:create).and_raise(StandardError.new("Database error"))
+        allow(Rails.logger).to receive(:error)
+      end
+
+      it 'does not prevent status update' do
+        expect {
+          membership.update!(status: :approved)
+        }.to change { membership.reload.status }.from('pending').to('approved')
+      end
+
+      it 'logs the error' do
+        membership.update!(status: :approved)
+        expect(Rails.logger).to have_received(:error).with(/Failed to create membership status notification/)
+      end
+    end
+  end
+
   describe 'factory' do
     it 'creates a valid project_membership' do
       membership = create(:project_membership)
