@@ -47,7 +47,7 @@
     <%= button_to "Delete Request", project_information_request_path(@project, @information_request), method: :delete,
                   class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded",
                   data: { confirm: "Are you sure you want to delete this request?" } %>
-    <%= link_to "Back to Requests", project_information_requests_path(@project), class: "text-gray-400 hover:underline" %>
+    <%= link_to "Back to Requests", project_information_requests_path(@project), class: "bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" %>
   </div>
 </div>
 

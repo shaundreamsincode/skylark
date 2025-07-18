@@ -25,8 +25,7 @@ RSpec.describe 'PublicRequests', type: :request do
           .and change(ProjectNote, :count).by(1)
           .and change(Notification, :count).by(1)
 
-        expect(response).to redirect_to(root_path)
-        expect(flash[:notice]).to eq('Your response has been submitted.')
+        expect(response).to redirect_to(confirm_submission_path)
       end
 
       it 'creates response with correct content' do
@@ -51,7 +50,8 @@ RSpec.describe 'PublicRequests', type: :request do
       it 'creates notification for the information request creator' do
         post public_request_submit_path(information_request.token), params: { content: valid_content }
         
-        notification = Notification.last
+        # Get the notification for the information request (not the project note)
+        notification = Notification.where(notifiable: information_request).last
         expect(notification.user).to eq(information_request.user)
         expect(notification.notifiable).to eq(information_request)
         expect(notification.message).to eq("Your information request '#{information_request.title}' received a response")
@@ -61,7 +61,8 @@ RSpec.describe 'PublicRequests', type: :request do
       it 'creates notification with correct polymorphic association' do
         post public_request_submit_path(information_request.token), params: { content: valid_content }
         
-        notification = Notification.last
+        # Get the notification for the information request (not the project note)
+        notification = Notification.where(notifiable: information_request).last
         expect(notification.notifiable_type).to eq('InformationRequest')
         expect(notification.notifiable_id).to eq(information_request.id)
       end
@@ -72,12 +73,12 @@ RSpec.describe 'PublicRequests', type: :request do
         
         expect {
           post public_request_submit_path(information_request.token), params: { content: valid_content }
-        }.to change(Notification, :count).by(1)
+        }.to change(Notification, :count).by(2)
         
-        # Verify only the information request creator gets notified
-        notification = Notification.last
-        expect(notification.user).to eq(information_request.user)
-        expect(notification.user).not_to eq(other_user)
+        # Verify the information request creator gets notified about the response
+        response_notification = Notification.where(notifiable: information_request).last
+        expect(response_notification.user).to eq(information_request.user)
+        expect(response_notification.user).not_to eq(other_user)
       end
     end
 
@@ -110,9 +111,10 @@ RSpec.describe 'PublicRequests', type: :request do
       it 'creates notification for the request creator, not project owner' do
         post public_request_submit_path(information_request.token), params: { content: valid_content }
         
-        notification = Notification.last
-        expect(notification.user).to eq(request_creator)
-        expect(notification.user).not_to eq(project.user)
+        # Get the notification for the information request (not the project note)
+        response_notification = Notification.where(notifiable: information_request).last
+        expect(response_notification.user).to eq(request_creator)
+        expect(response_notification.user).not_to eq(project.user)
       end
     end
 
@@ -127,7 +129,8 @@ RSpec.describe 'PublicRequests', type: :request do
       it 'creates notification with properly escaped title' do
         post public_request_submit_path(information_request.token), params: { content: valid_content }
         
-        notification = Notification.last
+        # Get the notification for the information request (not the project note)
+        notification = Notification.where(notifiable: information_request).last
         expected_message = "Your information request 'Request with 'quotes' & special chars!' received a response"
         expect(notification.message).to eq(expected_message)
       end

@@ -28,11 +28,14 @@ class PublicRequestsController < ApplicationController
         entry_type: "report"
       )
 
-      redirect_to root_path, notice: "Your response has been submitted."
+      redirect_to confirm_submission_path
     else
       flash[:alert] = "Failed to submit response."
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def confirm_submission
   end
 
   def success
