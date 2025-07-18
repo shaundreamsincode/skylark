@@ -19,8 +19,8 @@
         <td class="p-4"><%= req.user.full_name %></td>
         <td class="p-4"><%= req.expires_at ? req.expires_at.strftime("%B %d, %Y") : "No expiration" %></td>
         <td class="p-4">
-          <%= link_to "View", project_information_request_path(@project, req), class: "text-blue-400 hover:underline" %> |
-          <%= link_to "Share Link", public_request_form_url(req.token), target: "_blank", class: "text-green-400 hover:underline" %>
+          <%= link_to "View", project_information_request_path(@project, req), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %> |
+          <button onclick="copyToClipboard('<%= public_request_form_url(req.token) %>')" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">Copy Link</button>
         </td>
       </tr>
     <% end %>
@@ -29,3 +29,11 @@
 <% else %>
   <p class="text-gray-500 italic">No information requests yet.</p>
 <% end %>
+
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Information request URL copied to clipboard!");
+        });
+    }
+</script>
