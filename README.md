@@ -2,6 +2,8 @@
 
 Skylark is a collaborative project management and community platform built with Ruby on Rails and React. It provides a space for organizations and individuals to manage projects, share information, and collaborate effectively.
 
+🌐 **Live Demo**: [https://skylark-3kbo.onrender.com/](https://skylark-3kbo.onrender.com/)
+
 ## Features
 
 - **Project Management**
@@ -82,10 +84,10 @@ Skylark is a collaborative project management and community platform built with 
 3. Start the application with Docker Compose:
    ```bash
    # For development
-   docker-compose -f docker-compose.dev.yml up --build
+   docker compose -f docker-compose.dev.yml up --build
    
    # For production
-   docker-compose up --build
+   docker compose up --build
    ```
 
 4. The application will be available at `http://localhost:3000`
@@ -140,33 +142,33 @@ Skylark is a collaborative project management and community platform built with 
 
 - Build and start all services:
   ```bash
-  docker-compose up --build
+  docker compose up --build
   ```
 
 - Start services in background:
   ```bash
-  docker-compose up -d
+  docker compose up -d
   ```
 
 - View logs:
   ```bash
-  docker-compose logs -f web
+  docker compose logs -f web
   ```
 
 - Run Rails commands in container:
   ```bash
-  docker-compose exec web rails console
-  docker-compose exec web rails db:migrate
+  docker compose exec web rails console
+  docker compose exec web rails db:migrate
   ```
 
 - Stop all services:
   ```bash
-  docker-compose down
+  docker compose down
   ```
 
 - Clean up volumes:
   ```bash
-  docker-compose down -v
+  docker compose down -v
   ```
 
 ## Deployment
@@ -181,6 +183,8 @@ This application is configured for easy deployment on Render.com using Docker.
 2. **Connect to Render** and create a new Blueprint
 3. **Set environment variables** (especially `RAILS_MASTER_KEY`)
 4. **Deploy** - Render will handle the rest!
+
+**Example**: This project is deployed at [https://skylark-3kbo.onrender.com/](https://skylark-3kbo.onrender.com/)
 
 #### Manual Setup
 
@@ -204,8 +208,7 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
 ## License
 
-[Add license information here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
-
-[Add support information here]
+Email projectskylark@gmail.com for support, comments, etc.
