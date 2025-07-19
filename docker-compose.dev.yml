@@ -34,7 +34,9 @@ services:
     depends_on:
       - db
       - redis
-    command: ./bin/dev
+    command: bin/rails server -b 0.0.0.0
+
+
 
 volumes:
   postgres_dev_data:

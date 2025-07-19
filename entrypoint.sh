@@ -15,6 +15,29 @@ echo "Database is ready!"
 echo "Running database migrations..."
 bundle exec rails db:migrate
 
+# Run database seeds based on environment and configuration
+if [ "$RAILS_ENV" = "development" ] || [ "$SEED_DATABASE" = "true" ]; then
+  echo "Seeding database..."
+  bundle exec rails db:seed
+elif [ "$SEED_DATABASE" = "force" ]; then
+  echo "Force seeding database..."
+  bundle exec rails db:seed
+elif [ "$SEED_DATABASE" = "if_empty" ]; then
+  # Only seed if database is empty (no users exist)
+  if ! bundle exec rails runner "exit User.count > 0" 2>/dev/null; then
+    echo "Database appears empty, seeding..."
+    bundle exec rails db:seed
+  else
+    echo "Database not empty, skipping seed..."
+  fi
+fi
+
+# Build CSS in development
+if [ "$RAILS_ENV" = "development" ]; then
+  echo "Building CSS..."
+  ./bin/build-css
+fi
+
 # Precompile assets in production
 if [ "$RAILS_ENV" = "production" ]; then
   echo "Precompiling assets..."

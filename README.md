@@ -114,6 +114,7 @@ Skylark is a collaborative project management and community platform built with 
    ```bash
    rails db:create
    rails db:migrate
+   rails db:seed  # Optional: Populate with sample data
    ```
 
 5. Start the development server:
@@ -159,6 +160,7 @@ Skylark is a collaborative project management and community platform built with 
   ```bash
   docker compose exec web rails console
   docker compose exec web rails db:migrate
+  docker compose exec web rails db:seed  # Manually seed database
   ```
 
 - Stop all services:
@@ -170,6 +172,80 @@ Skylark is a collaborative project management and community platform built with 
   ```bash
   docker compose down -v
   ```
+
+## Database Seeding
+
+The application includes comprehensive seed data to help you get started quickly. The seeding behavior is controlled by environment variables:
+
+### Automatic Seeding (Docker)
+
+When using Docker, seeding happens automatically based on your configuration:
+
+- **Development**: Seeds automatically on container start
+- **Production**: Use environment variables to control seeding:
+  ```bash
+  # Always seed (good for staging/demo environments)
+  SEED_DATABASE=true
+  
+  # Only seed if database is empty (smart for production)
+  SEED_DATABASE=if_empty
+  
+  # Force seed (explicit override)
+  SEED_DATABASE=force
+  ```
+
+### Manual Seeding
+
+To manually seed the database:
+
+```bash
+# Local development
+rails db:seed
+
+# Docker container
+docker compose exec web rails db:seed
+```
+
+### CSS Development
+
+For CSS development in Docker:
+
+```bash
+# Build CSS manually when needed
+docker compose -f docker-compose.dev.yml exec web ./bin/build-css
+
+# Or rebuild CSS from outside the container
+docker compose -f docker-compose.dev.yml exec web bundle exec rails tailwindcss:build
+```
+
+**Note**: CSS is automatically built when the container starts in development mode.
+
+### Seed Data Includes
+
+- **Users**: Admin user and sample users with realistic profiles
+- **Organizations**: Sample organizations with descriptions
+- **Tags & Categories**: Comprehensive tagging system
+- **Projects**: Sample projects with realistic content
+- **Memberships**: User-organization relationships
+
+### Safe to Run Multiple Times
+
+The seed file uses `find_or_create_by!` methods, which means:
+- ✅ **No duplicate records**: Won't create duplicates if records already exist
+- ✅ **No data loss**: Won't destroy or overwrite existing data
+- ✅ **Safe for production**: Can be run safely in any environment
+- ✅ **Idempotent**: Running multiple times has the same effect as running once
+
+This makes it safe to run the seed file repeatedly without worrying about data integrity issues.
+
+### Default Admin Account
+
+The seeding creates a default admin account:
+- **Email**: admin@skylark.com
+- **Password**: password123
+- **Role**: Super Admin
+
+**⚠️ Important**: Change the default admin password in production!
 
 ## Deployment
 
