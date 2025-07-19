@@ -9,8 +9,8 @@ gem 'rails', '~> 6.1.7', '>= 6.1.7.8'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+# Use SCSS for stylesheets (commented out due to Tailwind CSS conflict)
+# gem 'sass-rails', '>= 6'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
