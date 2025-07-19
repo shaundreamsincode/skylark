@@ -5,8 +5,6 @@ FROM ruby:3.2.2-alpine AS builder
 RUN apk add --no-cache \
     build-base \
     postgresql-dev \
-    nodejs \
-    yarn \
     git
 
 # Set working directory
@@ -14,19 +12,15 @@ WORKDIR /app
 
 # Copy dependency files
 COPY Gemfile Gemfile.lock ./
-COPY package.json yarn.lock ./
 
 # Install dependencies
 RUN bundle config set --local without 'development test' && \
     bundle install --jobs 4 --retry 3
 
-RUN yarn install --frozen-lockfile
-
 # Copy application code
 COPY . .
 
-# Precompile assets
-RUN bundle exec rails assets:precompile
+
 
 # Production stage
 FROM ruby:3.2.2-alpine

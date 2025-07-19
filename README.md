@@ -41,8 +41,6 @@ Skylark is a collaborative project management and community platform built with 
   - Redis (optional, for Action Cable)
 
 - **Frontend**
-  - React/JavaScript
-  - Webpacker
   - TailwindCSS for styling
   - Turbolinks for faster navigation
 
@@ -50,7 +48,6 @@ Skylark is a collaborative project management and community platform built with 
   - Pry for debugging
   - RSpec for testing
   - Capybara for system testing
-  - Webpack for asset compilation
 
 - **Deployment**
   - Docker and Docker Compose
@@ -61,7 +58,6 @@ Skylark is a collaborative project management and community platform built with 
 
 - Ruby 3.2.2
 - PostgreSQL
-- Node.js and Yarn
 - Redis (optional)
 - Docker and Docker Compose (for containerized deployment)
 
@@ -105,12 +101,7 @@ Skylark is a collaborative project management and community platform built with 
    bundle install
    ```
 
-3. Install JavaScript dependencies:
-   ```bash
-   yarn install
-   ```
-
-4. Set up the database:
+3. Set up the database:
    ```bash
    rails db:create
    rails db:migrate

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15-alpine
@@ -30,7 +28,6 @@ services:
     volumes:
       - .:/app
       - bundle_cache:/usr/local/bundle
-      - node_modules_cache:/app/node_modules
     depends_on:
       - db
       - redis
@@ -41,5 +38,4 @@ services:
 volumes:
   postgres_dev_data:
   redis_dev_data:
-  bundle_cache:
-  node_modules_cache: 
+  bundle_cache: 
