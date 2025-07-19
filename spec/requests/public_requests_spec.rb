@@ -137,19 +137,22 @@ RSpec.describe 'PublicRequests', type: :request do
     end
 
     context 'when multiple responses are submitted' do
-      it 'creates a notification for each response' do
+      it 'updates the existing response and does not create additional notifications' do
         expect {
           post public_request_submit_path(information_request.token), params: { content: 'First response' }
         }.to change(Notification, :count).by(1)
 
         expect {
           post public_request_submit_path(information_request.token), params: { content: 'Second response' }
-        }.to change(Notification, :count).by(1)
+        }.not_to change(Notification, :count)
 
-        # Verify both notifications are for the same user and information request
-        notifications = Notification.last(2)
-        expect(notifications.map(&:user).uniq).to eq([information_request.user])
-        expect(notifications.map(&:notifiable).uniq).to eq([information_request])
+        # Verify the response was updated
+        expect(information_request.reload.response.content).to eq('Second response')
+        
+        # Verify only one notification exists
+        notifications = Notification.where(notifiable: information_request)
+        expect(notifications.count).to eq(1)
+        expect(notifications.first.user).to eq(information_request.user)
       end
     end
   end

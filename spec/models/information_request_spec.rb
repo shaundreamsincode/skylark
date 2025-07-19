@@ -14,11 +14,10 @@ RSpec.describe InformationRequest, type: :model do
       expect(request.user).to eq(user)
     end
 
-    it 'has many responses' do
+    it 'has one response' do
       request = create(:information_request)
-      response1 = create(:information_request_response, information_request: request)
-      response2 = create(:information_request_response, information_request: request)
-      expect(request.responses).to include(response1, response2)
+      response = create(:information_request_response, information_request: request)
+      expect(request.response).to eq(response)
     end
   end
 

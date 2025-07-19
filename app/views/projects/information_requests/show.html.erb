@@ -14,33 +14,17 @@
     <button onclick="copyToClipboard('<%= public_request_form_url(@information_request.token) %>')" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">Copy</button>
   </div>
 
-  <h2 class="text-2xl font-bold text-blue-400 mb-4">Responses</h2>
-  <% if @responses.present? %>
+  <h2 class="text-2xl font-bold text-blue-400 mb-4">Response</h2>
+  <div class="bg-gray-700 p-4 rounded mb-6 flex items-center justify-between">
+    <% if @information_request.response.present? %>
     <div class="overflow-x-auto">
-      <table class="w-full bg-gray-800 rounded-lg shadow-lg">
-        <thead>
-        <tr class="text-left text-white bg-gray-700">
-          <th class="p-4">Title</th>
-          <th class="p-4">Created By</th>
-          <th class="p-4">Created At</th>
-        </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-600">
-        <% @responses.each do |note| %>
-          <tr class="text-gray-300">
-            <td class="p-4 text-blue-400 hover:underline">
-              <%= link_to note.title, project_note_path(@project, note) %>
-            </td>
-            <td class="p-4"><%= note.user.full_name %></td>
-            <td class="p-4"><%= note.created_at.strftime("%B %d, %Y") %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+      <%= @information_request.response.content %>
     </div>
   <% else %>
-    <p class="text-gray-500 italic">No responses yet.</p>
+    <p class="text-gray-500 italic">No response yet.</p>
   <% end %>
+
+  </div>
 
   <div class="mt-8 flex space-x-4">
     <%= link_to "Edit Request", edit_project_information_request_path(@project, @information_request), class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" %>

@@ -17,7 +17,7 @@ class PublicRequestsController < ApplicationController
     @information_request = InformationRequest.find_by(token: params[:token])
     return render plain: "Invalid request", status: :not_found if @information_request.nil?
 
-    response = @information_request.responses.create(content: params[:content])
+    response = @information_request.upsert_response(content: params[:content])
 
     if response.persisted?
       ProjectNote.create!(
