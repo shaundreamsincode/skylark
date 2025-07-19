@@ -6,8 +6,6 @@ RUN apk add --no-cache \
     build-base \
     postgresql-dev \
     postgresql-client \
-    nodejs \
-    yarn \
     tzdata \
     git \
     bash \
@@ -22,11 +20,7 @@ COPY Gemfile Gemfile.lock ./
 # Install Ruby gems
 RUN bundle install --jobs 4 --retry 3
 
-# Copy package.json and yarn.lock
-COPY package.json yarn.lock ./
 
-# Install JavaScript dependencies
-RUN yarn install --frozen-lockfile
 
 # Copy the rest of the application
 COPY . .
