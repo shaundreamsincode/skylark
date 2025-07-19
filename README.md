@@ -84,10 +84,10 @@ Skylark is a collaborative project management and community platform built with 
 3. Start the application with Docker Compose:
    ```bash
    # For development
-   docker-compose -f docker-compose.dev.yml up --build
+   docker compose -f docker compose.dev.yml up --build
    
    # For production
-   docker-compose up --build
+   docker compose up --build
    ```
 
 4. The application will be available at `http://localhost:3000`
@@ -142,33 +142,33 @@ Skylark is a collaborative project management and community platform built with 
 
 - Build and start all services:
   ```bash
-  docker-compose up --build
+  docker compose up --build
   ```
 
 - Start services in background:
   ```bash
-  docker-compose up -d
+  docker compose up -d
   ```
 
 - View logs:
   ```bash
-  docker-compose logs -f web
+  docker compose logs -f web
   ```
 
 - Run Rails commands in container:
   ```bash
-  docker-compose exec web rails console
-  docker-compose exec web rails db:migrate
+  docker compose exec web rails console
+  docker compose exec web rails db:migrate
   ```
 
 - Stop all services:
   ```bash
-  docker-compose down
+  docker compose down
   ```
 
 - Clean up volumes:
   ```bash
-  docker-compose down -v
+  docker compose down -v
   ```
 
 ## Deployment
