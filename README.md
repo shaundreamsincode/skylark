@@ -1,6 +1,6 @@
 # Skylark
 
-Skylark is a collaborative project management and community platform built with Ruby on Rails and React. It provides a space for organizations and individuals to manage projects, share information, and collaborate effectively.
+Skylark is a collaborative project management and community platform built with Ruby on Rails. It provides a space for organizations and individuals to manage projects, share information, and collaborate effectively.
 
 🌐 **Live Demo**: [https://skylark-3kbo.onrender.com/](https://skylark-3kbo.onrender.com/)
 
