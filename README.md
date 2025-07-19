@@ -211,4 +211,4 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
-Email projectskylark@gmail.com for support, comments, etc.
+Email projectskylark2025@gmail.com for support, comments, etc.
