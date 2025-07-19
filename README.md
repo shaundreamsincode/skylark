@@ -84,7 +84,7 @@ Skylark is a collaborative project management and community platform built with 
 3. Start the application with Docker Compose:
    ```bash
    # For development
-   docker compose -f docker compose.dev.yml up --build
+   docker compose -f docker-compose.dev.yml up --build
    
    # For production
    docker compose up --build
@@ -208,8 +208,7 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
 ## License
 
-[Add license information here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
-
-[Add support information here]
+Email projectskylark2025@gmail.com for support, comments, etc.
