@@ -85,21 +85,6 @@ RSpec.describe 'SuperAdmin::Organizations', type: :request do
     end
   end
 
-  describe 'DELETE /super_admin/organizations/:id' do
-    it 'deletes the organization' do
-      org = create(:organization)
-      expect {
-        delete super_admin_organization_path(org)
-      }.to change(Organization, :count).by(-1)
-    end
-    it 'redirects to index with notice' do
-      org = create(:organization)
-      delete super_admin_organization_path(org)
-      expect(response).to redirect_to(super_admin_organizations_path)
-      expect(flash[:notice]).to eq('Organization deleted successfully.')
-    end
-  end
-
   describe 'POST /super_admin/organizations/:id/add_member' do
     it 'adds a user as a member' do
       expect {
@@ -116,26 +101,6 @@ RSpec.describe 'SuperAdmin::Organizations', type: :request do
       post add_member_super_admin_organization_path(organization), params: { user_id: other_user.id, role: 'member' }
       expect(response).to redirect_to(super_admin_organization_path(organization))
       expect(flash[:alert]).to eq('User is already a member.')
-    end
-  end
-
-  describe 'DELETE /super_admin/organizations/:id/remove_member' do
-    it 'removes a user as a member' do
-      membership = organization.organization_memberships.create(user: other_user, role: 'member')
-      expect {
-        delete remove_member_super_admin_organization_path(organization), params: { user_id: other_user.id }
-      }.to change(organization.organization_memberships, :count).by(-1)
-    end
-    it 'redirects with notice if removed' do
-      organization.organization_memberships.create(user: other_user, role: 'member')
-      delete remove_member_super_admin_organization_path(organization), params: { user_id: other_user.id }
-      expect(response).to redirect_to(super_admin_organization_path(organization))
-      expect(flash[:notice]).to eq('User removed successfully.')
-    end
-    it 'redirects with alert if not a member' do
-      delete remove_member_super_admin_organization_path(organization), params: { user_id: other_user.id }
-      expect(response).to redirect_to(super_admin_organization_path(organization))
-      expect(flash[:alert]).to eq('User is not a member.')
     end
   end
 

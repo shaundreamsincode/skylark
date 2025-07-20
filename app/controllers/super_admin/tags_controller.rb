@@ -33,15 +33,9 @@ class SuperAdmin::TagsController < SuperAdmin::SuperAdminController
     end
   end
 
-  def destroy
-    @tag = Tag.find(params[:id])
-    @tag.destroy
-    redirect_to super_admin_tags_path, notice: "Tag deleted successfully."
-  end
-
   private
 
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:name, :description)
   end
 end

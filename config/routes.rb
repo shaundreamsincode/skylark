@@ -58,7 +58,6 @@ Rails.application.routes.draw do
     resources :organizations do
       member do
         post "add_member"
-        delete "remove_member"
         patch "update_role"
       end
     end

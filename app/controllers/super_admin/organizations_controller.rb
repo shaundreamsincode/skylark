@@ -35,12 +35,6 @@ class SuperAdmin::OrganizationsController < SuperAdmin::SuperAdminController
     end
   end
 
-  def destroy
-    @organization = Organization.find(params[:id])
-    @organization.destroy
-    redirect_to super_admin_organizations_path, notice: "Organization deleted successfully."
-  end
-
   def add_member
     @organization = Organization.find(params[:id])
     user = User.find(params[:user_id])
@@ -51,18 +45,6 @@ class SuperAdmin::OrganizationsController < SuperAdmin::SuperAdminController
       redirect_to super_admin_organization_path(@organization), notice: "User added successfully."
     else
       redirect_to super_admin_organization_path(@organization), alert: "User is already a member."
-    end
-  end
-
-  def remove_member
-    @organization = Organization.find(params[:id])
-    membership = @organization.organization_memberships.find_by(user_id: params[:user_id])
-
-    if membership
-      membership.destroy
-      redirect_to super_admin_organization_path(@organization), notice: "User removed successfully."
-    else
-      redirect_to super_admin_organization_path(@organization), alert: "User is not a member."
     end
   end
 
@@ -81,6 +63,6 @@ class SuperAdmin::OrganizationsController < SuperAdmin::SuperAdminController
   private
 
   def organization_params
-    params.require(:organization).permit(:name)
+    params.require(:organization).permit(:name, :description)
   end
 end

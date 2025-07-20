@@ -33,15 +33,9 @@ class SuperAdmin::UsersController < SuperAdmin::SuperAdminController
     end
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to super_admin_users_path, notice: "User deleted successfully."
-  end
-
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :super_admin)
+    params.require(:user).permit(:first_name, :last_name, :email, :super_admin, :password, :password_confirmation)
   end
 end

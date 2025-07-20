@@ -33,12 +33,6 @@ class SuperAdmin::CategoriesController < SuperAdmin::SuperAdminController
     end
   end
 
-  def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
-    redirect_to super_admin_categories_path, notice: "Category deleted successfully."
-  end
-
   private
 
   def category_params

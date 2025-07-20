@@ -83,21 +83,6 @@ RSpec.describe 'SuperAdmin::Tags', type: :request do
     end
   end
 
-  describe 'DELETE /super_admin/tags/:id' do
-    it 'deletes the tag' do
-      tag_to_delete = create(:tag)
-      expect {
-        delete super_admin_tag_path(tag_to_delete)
-      }.to change(Tag, :count).by(-1)
-    end
-    it 'redirects to index with notice' do
-      tag_to_delete = create(:tag)
-      delete super_admin_tag_path(tag_to_delete)
-      expect(response).to redirect_to(super_admin_tags_path)
-      expect(flash[:notice]).to eq('Tag deleted successfully.')
-    end
-  end
-
   describe 'authorization' do
     before { login_as(user) }
     it 'redirects non-super admins to root' do
