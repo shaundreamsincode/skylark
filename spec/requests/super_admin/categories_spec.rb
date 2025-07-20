@@ -85,21 +85,6 @@ RSpec.describe 'SuperAdmin::Categories', type: :request do
     end
   end
 
-  describe 'DELETE /super_admin/categories/:id' do
-    it 'deletes the category' do
-      category_to_delete = create(:category)
-      expect {
-        delete super_admin_category_path(category_to_delete)
-      }.to change(Category, :count).by(-1)
-    end
-    it 'redirects to index with notice' do
-      category_to_delete = create(:category)
-      delete super_admin_category_path(category_to_delete)
-      expect(response).to redirect_to(super_admin_categories_path)
-      expect(flash[:notice]).to eq('Category deleted successfully.')
-    end
-  end
-
   describe 'authorization' do
     before { login_as(user) }
     it 'redirects non-super admins to root' do

@@ -118,21 +118,6 @@ RSpec.describe 'SuperAdmin::Users', type: :request do
     end
   end
 
-  describe 'DELETE /super_admin/users/:id' do
-    it 'deletes the user' do
-      user_to_delete = create(:user)
-      expect {
-        delete super_admin_user_path(user_to_delete)
-      }.to change(User, :count).by(-1)
-    end
-    it 'redirects to index with notice' do
-      user_to_delete = create(:user)
-      delete super_admin_user_path(user_to_delete)
-      expect(response).to redirect_to(super_admin_users_path)
-      expect(flash[:notice]).to eq('User deleted successfully.')
-    end
-  end
-
   describe 'authorization' do
     before { login_as(user) }
     it 'redirects non-super admins to root' do

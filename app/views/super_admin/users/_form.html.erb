@@ -12,6 +12,16 @@
     <%= f.label :email, "Email", class: "block text-gray-200 font-bold" %>
     <%= f.email_field :email, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
   </div>
+  <% if @user.new_record? %>
+    <div class="mb-4">
+      <%= f.label :password, "Password", class: "block text-gray-200 font-bold" %>
+      <%= f.password_field :password, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :password_confirmation, "Password Confirmation", class: "block text-gray-200 font-bold" %>
+      <%= f.password_field :password_confirmation, class: "w-full p-2 rounded bg-gray-800 text-white border border-gray-600" %>
+    </div>
+  <% end %>
   <div class="mb-4">
     <%= f.label :super_admin, "Super Admin", class: "block text-gray-200 font-bold" %>
     <%= f.check_box :super_admin, class: "w-4 h-4 text-blue-500 border-gray-300 rounded" %>
